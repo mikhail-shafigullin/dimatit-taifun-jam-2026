@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dmbnrnk1edcbx"]
+
+[ext_resource type="Script" uid="uid://ba7t4hoyv21ee" path="res://autoload/pauseMenu/PauseMenu.gd" id="1_script"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=607405163]
+process_mode = 3
+layer = 100
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="." unique_id=2026838315]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.6)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1217192625]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel" type="VBoxContainer" parent="CenterContainer" unique_id=1080908228]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/MainPanel" unique_id=647208523]
+layout_mode = 2
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/MainPanel" unique_id=1409525811]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/MainPanel" unique_id=773688497]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="SettingsPanel" type="VBoxContainer" parent="CenterContainer" unique_id=2133307028]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VolumeLabel" type="Label" parent="CenterContainer/SettingsPanel" unique_id=137884349]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer/SettingsPanel" unique_id=344477615]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="BackButton" type="Button" parent="CenterContainer/SettingsPanel" unique_id=1899425644]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"

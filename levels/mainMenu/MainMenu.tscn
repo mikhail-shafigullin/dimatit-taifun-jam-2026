@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://c2iy1j35plg3b"]
+
+[ext_resource type="Script" uid="uid://587tblhnw777" path="res://levels/mainMenu/MainMenu.gd" id="1_script"]
+
+[node name="MainMenu" type="Control" unique_id=1342737930]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1297956460]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel" type="VBoxContainer" parent="CenterContainer" unique_id=147824042]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="StartButton" type="Button" parent="CenterContainer/MainPanel" unique_id=281550744]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/MainPanel" unique_id=699522877]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="SettingsPanel" type="VBoxContainer" parent="CenterContainer" unique_id=48090480]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VolumeLabel" type="Label" parent="CenterContainer/SettingsPanel" unique_id=802634833]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer/SettingsPanel" unique_id=1206192656]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="BackButton" type="Button" parent="CenterContainer/SettingsPanel" unique_id=2073372793]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
