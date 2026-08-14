@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GamePrototype"
+config/name="OfficePsycho"
 run/main_scene="res://levels/mainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SceneTransitionManager="*res://autoload/sceneTransitionManager/SceneTransitionManager.tscn"
 SaveSystem="*res://autoload/saveSystem/SaveSystem.gd"
 PauseMenu="*res://autoload/pauseMenu/PauseMenu.tscn"
+EventBus="*res://autoload/eventBus/EventBus.gd"
 Analytics="*uid://crwb20qlw6enl"
 R="*uid://cd01mwnjjkes4"
 

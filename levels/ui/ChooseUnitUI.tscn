@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bxufdmhibvuxk"]
+
+[ext_resource type="Script" uid="uid://bxmusw6hept0" path="res://levels/ui/ChooseUnitUI.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://dxxkkqwi3nglg" path="res://levels/ui/UnitCard.tscn" id="2_card"]
+
+[node name="ChooseUnitUi" type="Control" unique_id=2006529422]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="CenterContainer" type="Control" parent="." unique_id=995604414]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChooseBox" type="VBoxContainer" parent="CenterContainer" unique_id=-1706675436]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -351.5
+offset_top = -186.5
+offset_right = 351.5
+offset_bottom = 186.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="CardsRow" type="HBoxContainer" parent="CenterContainer/ChooseBox" unique_id=1644310172]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Card1" parent="CenterContainer/ChooseBox/CardsRow" unique_id=1305688453 instance=ExtResource("2_card")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Card2" parent="CenterContainer/ChooseBox/CardsRow" unique_id=1288574948 instance=ExtResource("2_card")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Card3" parent="CenterContainer/ChooseBox/CardsRow" unique_id=-1496112417 instance=ExtResource("2_card")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="IgnoreButton" type="Button" parent="CenterContainer/ChooseBox" unique_id=1668287586]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Ignore"
