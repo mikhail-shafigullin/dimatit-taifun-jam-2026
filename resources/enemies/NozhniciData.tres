@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/abstracts/EnemyData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dx1dxbw0we8r8" path="res://assets/props/Enemy_Nozhnici.png" id="2_idle"]
+
+[resource]
+script = ExtResource("1_script")
+enemyName = "Scissors"
+category = "Physical Item"
+tier = "Medium"
+attackType = 0
+isStationary = false
+maxHp = 25
+damage = 12
+attackSpeed = 2.5
+moveSpeed = 180.0
+attackRadius = 40.0
+idleSprite = ExtResource("2_idle")

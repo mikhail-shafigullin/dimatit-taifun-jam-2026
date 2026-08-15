@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/abstracts/EnemyData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cuaygyx4bg0os" path="res://assets/props/Enemy_BOSS.png" id="2_idle"]
+
+[resource]
+script = ExtResource("1_script")
+enemyName = "CEO"
+category = "Character (Boss)"
+tier = "Boss"
+attackType = 0
+isStationary = false
+maxHp = 800
+damage = 40
+attackSpeed = 1.2
+moveSpeed = 90.0
+attackRadius = 60.0
+idleSprite = ExtResource("2_idle")

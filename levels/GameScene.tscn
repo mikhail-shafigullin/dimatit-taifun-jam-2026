@@ -1,8 +1,25 @@
 [gd_scene format=3 uid="uid://cl0qmt2o82mmj"]
 
+[ext_resource type="Texture2D" uid="uid://c7poseq2034ms" path="res://assets/props/Fon.png" id="1_76kk2"]
+[ext_resource type="PackedScene" uid="uid://djb7oiaieslb2" path="res://levels/BaseCamera.tscn" id="1_ba0rk"]
+[ext_resource type="PackedScene" uid="uid://dthqonbmq0we2" path="res://scenes/actors/units/Unit.tscn" id="3_6vw0r"]
+[ext_resource type="Resource" path="res://resources/units/OfficeClerkData.tres" id="4_hwdry"]
+[ext_resource type="PackedScene" path="res://scenes/actors/enemies/Enemy.tscn" id="5_hwdry"]
+[ext_resource type="Resource" path="res://resources/enemies/BumagaData.tres" id="6_bumaga"]
+
 [node name="GameScene" type="Node2D" unique_id=183180630]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2061336652]
+[node name="BaseCamera" parent="." unique_id=1412570783 instance=ExtResource("1_ba0rk")]
 position = Vector2(576, 324)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D" unique_id=1988065663]
+[node name="Fon" type="Sprite2D" parent="." unique_id=389782065]
+position = Vector2(570, 286)
+texture = ExtResource("1_76kk2")
+
+[node name="Unit" parent="." unique_id=218488657 instance=ExtResource("3_6vw0r")]
+position = Vector2(825, 312)
+unitData = ExtResource("4_hwdry")
+
+[node name="Enemy" parent="." unique_id=891972945 instance=ExtResource("5_hwdry")]
+position = Vector2(368, 305)
+enemyData = ExtResource("6_bumaga")

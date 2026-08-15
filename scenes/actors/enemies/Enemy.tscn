@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bf0uur36674q7"]
+
+[ext_resource type="Script" uid="uid://bihm8wxhsg4wd" path="res://scenes/actors/enemies/Enemy.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bstgveqoqmw8t" path="res://assets/props/Enemy_Bumaga.png" id="2_n045g"]
+[ext_resource type="Script" uid="uid://cllp4w7e5jsel" path="res://components/combatComponent/CombatComponent.gd" id="3_combat"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enemy"]
+radius = 83.0542
+
+[node name="Enemy" type="CharacterBody2D" unique_id=891972945]
+motion_mode = 1
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=313492149]
+unique_name_in_owner = true
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_n045g")
+
+[node name="HitTimer" type="Timer" parent="." unique_id=354182341]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=502718364]
+unique_name_in_owner = true
+position = Vector2(-1, 24)
+shape = SubResource("CircleShape2D_enemy")
+
+[node name="CombatComponent" type="Node" parent="." unique_id=738261405]
+unique_name_in_owner = true
+script = ExtResource("3_combat")
+ownGroup = "enemies"
+targetGroup = "units"

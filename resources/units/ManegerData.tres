@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://bklq67il8qijr"]
+
+[ext_resource type="Script" uid="uid://b4fs80y3mke78" path="res://src/abstracts/AbilityData.gd" id="1_kks01"]
+[ext_resource type="Script" uid="uid://cq5m0fnii63w3" path="res://src/abstracts/UnitData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://44s0sx1cou08" path="res://assets/props/Dude_Maneger.png" id="2_idle"]
+
+[resource]
+script = ExtResource("1_script")
+unitName = "Manager"
+role = "Buffer"
+attackType = 1
+maxHp = 100
+damage = 10
+attackSpeed = 1.0
+moveSpeed = 100.0
+attackRadius = 50.0
+idleSprite = ExtResource("2_idle")

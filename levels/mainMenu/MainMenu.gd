@@ -1,6 +1,6 @@
 extends Control
 
-const GAME_SCENE_PATH = "res://levels/debug/Level2D.tscn"
+const GAME_SCENE_PATH = "res://levels/GameScene.tscn"
 
 @onready var mainPanel: VBoxContainer = %MainPanel
 @onready var settingsPanel: VBoxContainer = %SettingsPanel

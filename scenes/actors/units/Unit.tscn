@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dthqonbmq0we2"]
+
+[ext_resource type="Script" uid="uid://dgjl4t7pd41ts" path="res://scenes/actors/units/Unit.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ceihukl1smgts" path="res://assets/props/Dude_Clerk.png" id="2_n045g"]
+[ext_resource type="Script" uid="uid://cllp4w7e5jsel" path="res://components/combatComponent/CombatComponent.gd" id="3_combat"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0d74v"]
+radius = 17.0
+height = 120.0
+
+[node name="Unit" type="CharacterBody2D" unique_id=773203139]
+motion_mode = 1
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1503260167]
+unique_name_in_owner = true
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_n045g")
+
+[node name="HitTimer" type="Timer" parent="." unique_id=383577616]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=647291853]
+unique_name_in_owner = true
+position = Vector2(10, 14)
+shape = SubResource("CapsuleShape2D_0d74v")
+
+[node name="CombatComponent" type="Node" parent="." unique_id=910384726]
+unique_name_in_owner = true
+script = ExtResource("3_combat")
+ownGroup = "units"
+targetGroup = "enemies"

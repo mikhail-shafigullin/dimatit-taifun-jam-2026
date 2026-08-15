@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/abstracts/EnemyData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dmasfisa06mg3" path="res://assets/props/Enemy_Fax.png" id="2_idle"]
+
+[resource]
+script = ExtResource("1_script")
+enemyName = "Fax Machine"
+category = "Physical Equipment"
+tier = "Strong"
+attackType = 0
+isStationary = false
+maxHp = 350
+damage = 10
+attackSpeed = 0.6
+moveSpeed = 30.0
+attackRadius = 40.0
+idleSprite = ExtResource("2_idle")

@@ -20,13 +20,18 @@ config/icon="res://icon.svg"
 SceneTransitionManager="*res://autoload/sceneTransitionManager/SceneTransitionManager.tscn"
 SaveSystem="*res://autoload/saveSystem/SaveSystem.gd"
 PauseMenu="*res://autoload/pauseMenu/PauseMenu.tscn"
-EventBus="*res://autoload/eventBus/EventBus.gd"
 Analytics="*uid://crwb20qlw6enl"
 R="*uid://cd01mwnjjkes4"
+EventBus="*res://autoload/eventBus/EventBus.gd"
+Global="*uid://b70qjkgrd6h25"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GameAnalytics/plugin.cfg")
+enabled=PackedStringArray("res://addons/GameAnalytics/plugin.cfg", "res://addons/yard/plugin.cfg")
+
+[layer_names]
+
+2d_physics/layer_1="Combatants"
 
 [physics]
 

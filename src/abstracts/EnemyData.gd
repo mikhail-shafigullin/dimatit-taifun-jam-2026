@@ -1,11 +1,13 @@
-class_name UnitData
+class_name EnemyData
 extends Resource
 
 enum AttackType { MELEE, RANGED }
 
-@export var unitName: String
-@export var role: String
+@export var enemyName: String
+@export var category: String
+@export var tier: String
 @export var attackType: AttackType = AttackType.MELEE
+@export var isStationary: bool = false
 @export var maxHp: int = 0
 @export var damage: int = 0
 @export var attackSpeed: float = 0.0
