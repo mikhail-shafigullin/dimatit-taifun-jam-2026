@@ -31,16 +31,16 @@ const UNIT_POOL: Array[UnitData] = [
 	UNIT_UBORSHIK,
 ]
 
-const ENEMY_BUMAGA: EnemyData = preload("res://resources/enemies/BumagaData.tres")
-const ENEMY_FAX: EnemyData = preload("res://resources/enemies/FaxData.tres")
-const ENEMY_KULER: EnemyData = preload("res://resources/enemies/KulerData.tres")
-const ENEMY_NOZHNICI: EnemyData = preload("res://resources/enemies/NozhniciData.tres")
-const ENEMY_PRINTER: EnemyData = preload("res://resources/enemies/PrinterData.tres")
-const ENEMY_PROECTOR: EnemyData = preload("res://resources/enemies/ProectorData.tres")
-const ENEMY_SHKAF: EnemyData = preload("res://resources/enemies/ShkafData.tres")
-const ENEMY_SHREDER: EnemyData = preload("res://resources/enemies/ShrederData.tres")
-const ENEMY_VIGOR_RAB: EnemyData = preload("res://resources/enemies/VigorRabData.tres")
-const ENEMY_BOSS: EnemyData = preload("res://resources/enemies/BossData.tres")
+const ENEMY_BUMAGA: EnemyData = preload("res://resources/enemies/01_BumagaData.tres")
+const ENEMY_PRINTER: EnemyData = preload("res://resources/enemies/02_PrinterData.tres")
+const ENEMY_SHKAF: EnemyData = preload("res://resources/enemies/03_ShkafData.tres")
+const ENEMY_NOZHNICI: EnemyData = preload("res://resources/enemies/04_NozhniciData.tres")
+const ENEMY_KULER: EnemyData = preload("res://resources/enemies/05_KulerData.tres")
+const ENEMY_PROECTOR: EnemyData = preload("res://resources/enemies/06_ProectorData.tres")
+const ENEMY_FAX: EnemyData = preload("res://resources/enemies/07_FaxData.tres")
+const ENEMY_SHREDER: EnemyData = preload("res://resources/enemies/08_ShrederData.tres")
+const ENEMY_VIGOR_RAB: EnemyData = preload("res://resources/enemies/09_VigorRabData.tres")
+const ENEMY_BOSS: EnemyData = preload("res://resources/enemies/10_BossData.tres")
 
 ## One entry per round; each entry lists every enemy to spawn that round.
 const ROUND_ENEMIES: Array[Array] = [
