@@ -11,6 +11,7 @@ const DAMAGE_FLASH_DURATION = 0.15
 		applyUnitData()
 
 @onready var sprite: Sprite2D = %Sprite2D
+@onready var shadow: Polygon2D = %Shadow
 @onready var hitTimer: Timer = %HitTimer
 @onready var damageFlashTimer: Timer = %DamageFlashTimer
 @onready var combatComponent: CombatComponent = %CombatComponent
@@ -32,6 +33,9 @@ func applyUnitData() -> void:
 	if unitData == null or sprite == null:
 		return
 	sprite.texture = unitData.idleSprite
+	if shadow != null:
+		shadow.position = unitData.shadowOffset
+		shadow.scale = unitData.shadowScale
 	if combatComponent != null:
 		combatComponent.configure(unitData.maxHp, unitData.damage, unitData.attackSpeed, unitData.moveSpeed, unitData.attackRadius)
 

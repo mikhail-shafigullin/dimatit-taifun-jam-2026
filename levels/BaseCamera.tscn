@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://jj72sqj3xg1j" path="res://levels/BaseCamera.gd" id="1_2fh6h"]
 
 [node name="Camera2D" type="Camera2D" unique_id=1412570783]
+process_mode = 3
 script = ExtResource("1_2fh6h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=8385979]

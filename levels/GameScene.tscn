@@ -5,9 +5,23 @@
 [ext_resource type="Script" uid="uid://xi5utfg3bnkx" path="res://levels/GameScene.gd" id="9_gsscript"]
 [ext_resource type="PackedScene" uid="uid://bxufdmhibvuxk" path="res://levels/ui/ChooseUnitUI.tscn" id="10_choose"]
 
+[sub_resource type="Gradient" id="Gradient_6vw0r"]
+colors = PackedColorArray(0.22352941, 0.31764707, 0.35686275, 1, 0.22352941, 0.31764707, 0.35686275, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l0tk0"]
+gradient = SubResource("Gradient_6vw0r")
+
 [node name="GameScene" type="Node2D" unique_id=183180630]
 y_sort_enabled = true
 script = ExtResource("9_gsscript")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2145502028]
+z_index = -3
+offset_left = -10000.0
+offset_top = -10000.0
+offset_right = 10000.0
+offset_bottom = 10000.0
+color = Color(0.22352941, 0.31764707, 0.35686275, 1)
 
 [node name="BaseCamera" parent="." unique_id=1412570783 instance=ExtResource("1_ba0rk")]
 position = Vector2(576, 324)
@@ -16,6 +30,29 @@ position = Vector2(576, 324)
 z_index = -2
 position = Vector2(570, 286)
 texture = ExtResource("1_76kk2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fon" unique_id=912978373]
+position = Vector2(4.5503864, -500.99997)
+rotation = 1.5707964
+scale = Vector2(0.30468747, 2005.2277)
+texture = SubResource("GradientTexture1D_l0tk0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Fon" unique_id=1274574710]
+position = Vector2(4.5503864, 502.99997)
+rotation = -1.5707964
+scale = Vector2(0.30468747, 2005.2277)
+texture = SubResource("GradientTexture1D_l0tk0")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Fon" unique_id=278480316]
+position = Vector2(-920.99994, 34)
+scale = Vector2(0.30468747, 2005.2277)
+texture = SubResource("GradientTexture1D_l0tk0")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Fon" unique_id=1865239000]
+position = Vector2(920.99994, 34)
+rotation = 3.1415927
+scale = Vector2(0.30468747, 2005.2277)
+texture = SubResource("GradientTexture1D_l0tk0")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1003043447]
 process_mode = 3

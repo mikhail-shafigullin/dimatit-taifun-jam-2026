@@ -15,3 +15,5 @@ enum AttackType { MELEE, RANGED }
 @export var portrait: Texture2D
 @export var idleSprite: Texture2D
 @export var hitSprite: Texture2D
+@export var shadowOffset: Vector2 = Vector2(5, 51)
+@export var shadowScale: Vector2 = Vector2(0.4, 0.4)
