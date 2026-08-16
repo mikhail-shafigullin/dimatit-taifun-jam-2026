@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dx7wsm4546jhi"]
 
-[ext_resource type="Script" path="res://src/abstracts/EnemyData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b4fs80y3mke78" path="res://src/abstracts/AbilityData.gd" id="1_fihla"]
+[ext_resource type="Script" uid="uid://d263hru3sv5ah" path="res://src/abstracts/EnemyData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://b4cwhdiqkweir" path="res://assets/props/Enemy_Printer.png" id="2_idle"]
 
 [resource]
@@ -13,6 +14,5 @@ isStationary = true
 maxHp = 60
 damage = 8
 attackSpeed = 0.8
-moveSpeed = 0.0
 attackRadius = 70.0
 idleSprite = ExtResource("2_idle")

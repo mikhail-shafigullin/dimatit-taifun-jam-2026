@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://ybi0asm1irle"]
 
-[ext_resource type="Script" path="res://src/abstracts/EnemyData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://d263hru3sv5ah" path="res://src/abstracts/EnemyData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b4fs80y3mke78" path="res://src/abstracts/AbilityData.gd" id="1_yke1v"]
 [ext_resource type="Texture2D" uid="uid://5kwpx7uqu4ys" path="res://assets/props/Enemy_Proector.png" id="2_idle"]
 
 [resource]
@@ -9,7 +10,6 @@ enemyName = "Overheated Projector"
 category = "Physical Equipment"
 tier = "Medium/Strong"
 attackType = 1
-isStationary = false
 maxHp = 90
 damage = 14
 attackSpeed = 0.9

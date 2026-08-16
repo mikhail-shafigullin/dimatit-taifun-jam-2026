@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://3ltascngvf6l"]
 
-[ext_resource type="Script" path="res://src/abstracts/UnitData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b4fs80y3mke78" path="res://src/abstracts/AbilityData.gd" id="1_7nll2"]
+[ext_resource type="Script" uid="uid://cq5m0fnii63w3" path="res://src/abstracts/UnitData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dl0dxy6f7gatx" path="res://assets/props/Dude_Buhgalter.png" id="2_idle"]
 [ext_resource type="Texture2D" uid="uid://cpve6l7e50omi" path="res://assets/props/Dude_Buhgalter_Hit.png" id="3_hit"]
 
@@ -8,7 +9,6 @@
 script = ExtResource("1_script")
 unitName = "Accountant"
 role = "Tank / Debuffer"
-attackType = 0
 maxHp = 100
 damage = 10
 attackSpeed = 1.0

@@ -14,10 +14,30 @@ _scan_rulesets = Array[Dictionary]([{
 &"scan_regex_include": ""
 }])
 _uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://00ji6d55x2r5": &"TrudogolikData",
+&"uid://3ltascngvf6l": &"BuhgalterData",
+&"uid://b0eb64h57e6ps": &"BoristoData",
+&"uid://bahpdvnq6cpjw": &"ToxicData",
+&"uid://bbuf21jknhxjs": &"OfficeClerkData",
+&"uid://bf5ehnu21ban5": &"OhranikData",
+&"uid://bhn5nwtonne4m": &"MangPoProdData",
 &"uid://bklq67il8qijr": &"ManegerData",
-&"uid://d3tq8w53d16q8": &"UborshikData"
+&"uid://bsobkmf768m1w": &"ITData",
+&"uid://cc8i7l2khkpxo": &"HRData",
+&"uid://d3tq8w53d16q8": &"UborshikData",
+&"uid://dx72grtnt3pyb": &"StazhorData"
 })
 _string_ids_to_uids = Dictionary[StringName, StringName]({
+&"BoristoData": &"uid://b0eb64h57e6ps",
+&"BuhgalterData": &"uid://3ltascngvf6l",
+&"HRData": &"uid://cc8i7l2khkpxo",
+&"ITData": &"uid://bsobkmf768m1w",
 &"ManegerData": &"uid://bklq67il8qijr",
+&"MangPoProdData": &"uid://bhn5nwtonne4m",
+&"OfficeClerkData": &"uid://bbuf21jknhxjs",
+&"OhranikData": &"uid://bf5ehnu21ban5",
+&"StazhorData": &"uid://dx72grtnt3pyb",
+&"ToxicData": &"uid://bahpdvnq6cpjw",
+&"TrudogolikData": &"uid://00ji6d55x2r5",
 &"UborshikData": &"uid://d3tq8w53d16q8"
 })

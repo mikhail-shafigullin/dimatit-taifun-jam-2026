@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://deesd1pd6okku"]
 
-[ext_resource type="Script" path="res://src/abstracts/EnemyData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b4fs80y3mke78" path="res://src/abstracts/AbilityData.gd" id="1_ohvmw"]
+[ext_resource type="Script" uid="uid://d263hru3sv5ah" path="res://src/abstracts/EnemyData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://58h70pfhptwd" path="res://assets/props/Enemy_Shkaf.png" id="2_idle"]
 
 [resource]
@@ -8,8 +9,6 @@ script = ExtResource("1_script")
 enemyName = "Filing Cabinet"
 category = "Physical Furniture"
 tier = "Weak/Medium"
-attackType = 0
-isStationary = false
 maxHp = 300
 damage = 5
 attackSpeed = 0.6

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://2t55wlaugl3a"]
 
-[ext_resource type="Script" path="res://src/abstracts/EnemyData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://d263hru3sv5ah" path="res://src/abstracts/EnemyData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b4fs80y3mke78" path="res://src/abstracts/AbilityData.gd" id="1_sr3xg"]
 [ext_resource type="Texture2D" uid="uid://bc4004bdjxw1f" path="res://assets/props/Enemy_Kuler.png" id="2_idle"]
 
 [resource]
@@ -9,7 +10,6 @@ enemyName = "Water Cooler"
 category = "Physical Equipment"
 tier = "Medium"
 attackType = 1
-isStationary = false
 maxHp = 80
 damage = 8
 attackSpeed = 1.0
