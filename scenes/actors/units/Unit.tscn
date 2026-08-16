@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dgjl4t7pd41ts" path="res://scenes/actors/units/Unit.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://ceihukl1smgts" path="res://assets/props/Dude_Clerk.png" id="2_n045g"]
 [ext_resource type="Script" uid="uid://cllp4w7e5jsel" path="res://components/combatComponent/CombatComponent.gd" id="3_combat"]
+[ext_resource type="Script" path="res://components/healthBarComponent/HealthBarComponent.gd" id="4_healthbar"]
+[ext_resource type="Script" path="res://components/walkAnimationComponent/WalkAnimationComponent.gd" id="5_walkanim"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0d74v"]
 radius = 17.0
@@ -10,6 +12,8 @@ height = 120.0
 
 [node name="Unit" type="CharacterBody2D" unique_id=773203139]
 motion_mode = 1
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1503260167]
@@ -18,6 +22,10 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_n045g")
 
 [node name="HitTimer" type="Timer" parent="." unique_id=383577616]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DamageFlashTimer" type="Timer" parent="." unique_id=383577617]
 unique_name_in_owner = true
 one_shot = true
 
@@ -31,3 +39,12 @@ unique_name_in_owner = true
 script = ExtResource("3_combat")
 ownGroup = "units"
 targetGroup = "enemies"
+
+[node name="HealthBarComponent" type="Node2D" parent="." unique_id=442198763]
+unique_name_in_owner = true
+script = ExtResource("4_healthbar")
+verticalOffset = -95.0
+
+[node name="WalkAnimationComponent" type="Node" parent="." unique_id=773203140]
+unique_name_in_owner = true
+script = ExtResource("5_walkanim")

@@ -3,12 +3,16 @@
 [ext_resource type="Script" uid="uid://bihm8wxhsg4wd" path="res://scenes/actors/enemies/Enemy.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bstgveqoqmw8t" path="res://assets/props/Enemy_Bumaga.png" id="2_n045g"]
 [ext_resource type="Script" uid="uid://cllp4w7e5jsel" path="res://components/combatComponent/CombatComponent.gd" id="3_combat"]
+[ext_resource type="Script" path="res://components/healthBarComponent/HealthBarComponent.gd" id="4_healthbar"]
+[ext_resource type="Script" path="res://components/walkAnimationComponent/WalkAnimationComponent.gd" id="5_walkanim"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_enemy"]
 radius = 83.0542
 
 [node name="Enemy" type="CharacterBody2D" unique_id=891972945]
 motion_mode = 1
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=313492149]
@@ -17,6 +21,10 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_n045g")
 
 [node name="HitTimer" type="Timer" parent="." unique_id=354182341]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DamageFlashTimer" type="Timer" parent="." unique_id=354182342]
 unique_name_in_owner = true
 one_shot = true
 
@@ -30,3 +38,12 @@ unique_name_in_owner = true
 script = ExtResource("3_combat")
 ownGroup = "enemies"
 targetGroup = "units"
+
+[node name="HealthBarComponent" type="Node2D" parent="." unique_id=580214937]
+unique_name_in_owner = true
+script = ExtResource("4_healthbar")
+verticalOffset = -140.0
+
+[node name="WalkAnimationComponent" type="Node" parent="." unique_id=891972946]
+unique_name_in_owner = true
+script = ExtResource("5_walkanim")

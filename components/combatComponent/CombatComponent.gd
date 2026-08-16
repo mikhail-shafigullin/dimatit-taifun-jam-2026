@@ -8,6 +8,8 @@ const SEPARATION_STRENGTH = 10.0
 const COMBATANTS_GROUP = "combatants"
 
 signal died()
+signal hp_changed(currentHp: int, maxHp: int)
+signal damage_taken(amount: int)
 
 @export var ownGroup: String = ""
 @export var targetGroup: String = ""
@@ -19,6 +21,7 @@ var _damage: int = 0
 var _attackSpeed: float = 1.0
 var _moveSpeed: float = 0.0
 var _attackRadius: float = 0.0
+var _maxHp: int = 0
 var _currentHp: int = 0
 var _attackCooldown: float = 0.0
 var _target: CombatComponent = null
@@ -37,14 +40,24 @@ func _resolveCollisionRadius() -> float:
 	var shape := _body.get_node_or_null("%CollisionShape2D") as CollisionShape2D
 	if shape != null and shape.shape is CircleShape2D:
 		return (shape.shape as CircleShape2D).radius
+	if shape != null and shape.shape is CapsuleShape2D:
+		return (shape.shape as CapsuleShape2D).radius
 	return 16.0
 
 func configure(maxHp: int, damage: int, attackSpeed: float, moveSpeed: float, attackRadius: float) -> void:
+	_maxHp = maxHp
 	_currentHp = maxHp
 	_damage = damage
 	_attackSpeed = attackSpeed
 	_moveSpeed = moveSpeed
 	_attackRadius = attackRadius
+	hp_changed.emit(_currentHp, _maxHp)
+
+func getCurrentHp() -> int:
+	return _currentHp
+
+func getMaxHp() -> int:
+	return _maxHp
 
 func _physics_process(delta: float) -> void:
 	if _body == null:
@@ -62,7 +75,8 @@ func _physics_process(delta: float) -> void:
 		_target = _findNearestTarget()
 		if _target != null:
 			var toTarget := _target._body.global_position - _body.global_position
-			if toTarget.length() > _attackRadius:
+			var edgeDistance := toTarget.length() - _collisionRadius - _target._collisionRadius
+			if edgeDistance > _attackRadius:
 				moveVelocity = toTarget.normalized() * _moveSpeed
 			else:
 				_tryAttack()
@@ -81,6 +95,8 @@ func _computeSeparation() -> Vector2:
 		if other == null:
 			continue
 		var otherCombat := other.get_node_or_null("%CombatComponent") as CombatComponent
+		if otherCombat != null and otherCombat.ownGroup == ownGroup:
+			continue
 		var otherRadius := otherCombat._collisionRadius if otherCombat != null else 16.0
 		var offset := _body.global_position - other.global_position
 		var dist := offset.length()
@@ -108,12 +124,16 @@ func _tryAttack() -> void:
 	if _target == null or _attackCooldown > 0.0:
 		return
 	_attackCooldown = 1.0 / max(_attackSpeed, 0.01)
+	if _body != null and _body.has_method("playHitFlash"):
+		_body.playHitFlash()
 	_target.applyDamage(_damage, _body.global_position)
 
 func applyDamage(amount: int, sourcePosition: Vector2) -> void:
 	_currentHp -= amount
-	if _body != null and _body.has_method("playHitFlash"):
-		_body.playHitFlash()
+	hp_changed.emit(max(_currentHp, 0), _maxHp)
+	damage_taken.emit(amount)
+	if _body != null and _body.has_method("playDamageFlash"):
+		_body.playDamageFlash()
 	var knockDirection := _body.global_position - sourcePosition
 	knockDirection = knockDirection.normalized() if knockDirection != Vector2.ZERO else Vector2.RIGHT
 	_knockbackVelocity = knockDirection * KNOCKBACK_SPEED
