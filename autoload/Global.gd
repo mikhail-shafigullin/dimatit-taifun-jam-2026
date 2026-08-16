@@ -1,8 +1,8 @@
 extends Node
 
 const CHOICES_PER_ROUND = 3
-const UNIT_SPAWN_AREA = Rect2(550.0, 150.0, 250.0, 400.0)
-const ENEMY_SPAWN_AREA = Rect2(150.0, 100.0, 200.0, 400.0)
+const UNIT_SPAWN_AREA = Rect2(150.0, 100.0, 400.0, 400.0)
+const ENEMY_SPAWN_AREA = Rect2(150.0, 100.0, 400.0, 400.0)
 
 var unitChoicesAvailable: int = 3
 var currentRound: int = 0

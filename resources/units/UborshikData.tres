@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cq5m0fnii63w3" path="res://src/abstracts/UnitData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://cpax4ax6247rd" path="res://assets/props/Dude_Uborshik.png" id="2_idle"]
 [ext_resource type="Texture2D" uid="uid://bgiyqltmtqjp" path="res://assets/props/Dude_Uborshik_Hit.png" id="3_hit"]
+[ext_resource type="Resource" path="res://resources/abilities/CleanseData.tres" id="4_cleanse"]
 
 [resource]
 script = ExtResource("1_script")
@@ -14,5 +15,6 @@ damage = 1
 attackSpeed = 1.0
 moveSpeed = 100.0
 attackRadius = 50.0
+abilities = [ExtResource("4_cleanse")]
 idleSprite = ExtResource("2_idle")
 hitSprite = ExtResource("3_hit")

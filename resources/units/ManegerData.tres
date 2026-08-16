@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b4fs80y3mke78" path="res://src/abstracts/AbilityData.gd" id="1_kks01"]
 [ext_resource type="Script" uid="uid://cq5m0fnii63w3" path="res://src/abstracts/UnitData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://44s0sx1cou08" path="res://assets/props/Dude_Maneger.png" id="2_idle"]
+[ext_resource type="Resource" path="res://resources/abilities/AttackDamageBuffData.tres" id="3_buff"]
 
 [resource]
 script = ExtResource("1_script")
@@ -14,4 +15,5 @@ damage = 1
 attackSpeed = 1.0
 moveSpeed = 100.0
 attackRadius = 50.0
+abilities = [ExtResource("3_buff")]
 idleSprite = ExtResource("2_idle")

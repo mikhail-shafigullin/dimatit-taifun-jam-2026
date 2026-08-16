@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityData" format=3]
+
+[ext_resource type="Script" path="res://src/abstracts/AbilityData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+abilityName = "Growth"
+description = "Permanently gains attack damage at the start of every round it survives."
+type = 5
+value = 1.0

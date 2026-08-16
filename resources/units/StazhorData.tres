@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cq5m0fnii63w3" path="res://src/abstracts/UnitData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://hd5pasqfi73y" path="res://assets/props/Dude_Stazhor.png" id="2_idle"]
 [ext_resource type="Texture2D" uid="uid://codkylgmjyn23" path="res://assets/props/Dude_Stazhor_Hit.png" id="3_hit"]
+[ext_resource type="Resource" path="res://resources/abilities/GrowthData.tres" id="4_growth"]
 
 [resource]
 script = ExtResource("1_script")
@@ -14,5 +15,6 @@ damage = 1
 attackSpeed = 1.0
 moveSpeed = 100.0
 attackRadius = 50.0
+abilities = [ExtResource("4_growth")]
 idleSprite = ExtResource("2_idle")
 hitSprite = ExtResource("3_hit")

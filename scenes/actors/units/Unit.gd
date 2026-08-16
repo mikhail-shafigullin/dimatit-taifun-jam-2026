@@ -15,6 +15,7 @@ const DAMAGE_FLASH_DURATION = 0.15
 @onready var hitTimer: Timer = %HitTimer
 @onready var damageFlashTimer: Timer = %DamageFlashTimer
 @onready var combatComponent: CombatComponent = %CombatComponent
+@onready var abilityComponent: AbilityComponent = %AbilityComponent
 @onready var _damageFlashMaterial: ShaderMaterial = ShaderMaterial.new()
 
 func _ready() -> void:
@@ -38,6 +39,8 @@ func applyUnitData() -> void:
 		shadow.scale = unitData.shadowScale
 	if combatComponent != null:
 		combatComponent.configure(unitData.maxHp, unitData.damage, unitData.attackSpeed, unitData.moveSpeed, unitData.attackRadius)
+	if abilityComponent != null:
+		abilityComponent.configure(unitData.abilities)
 
 func playHitFlash() -> void:
 	if unitData == null or unitData.hitSprite == null:

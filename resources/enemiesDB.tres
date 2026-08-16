@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://brp3wo3ljlug3"]
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://h3drh3y8ifje"]
 
 [ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_rajx5"]
 
@@ -7,33 +7,33 @@ script = ExtResource("1_rajx5")
 _version = 2
 _scan_rulesets = Array[Dictionary]([{
 &"allowed_file_extensions": Array[String]([]),
-&"class_restrictions": Array[StringName]([]),
-&"recursive_scan": false,
+&"class_restrictions": Array[StringName]([&"\"res://src/abstracts/EnemyData.gd\""]),
+&"recursive_scan": true,
 &"scan_directories": Array[String](["res://resources/enemies"]),
 &"scan_regex_exclude": "",
 &"scan_regex_include": ""
 }])
 _uids_to_string_ids = Dictionary[StringName, StringName]({
-&"uid://2t55wlaugl3a": &"KulerData",
-&"uid://b0ncjxms0xii": &"NozhniciData",
-&"uid://b8b4ru6tn74nx": &"BumagaData",
-&"uid://cq80gotaho843": &"ShrederData",
-&"uid://de1qek20oahkw": &"BossData",
-&"uid://deesd1pd6okku": &"ShkafData",
-&"uid://dtc5mh6io1pcw": &"VigorRabData",
-&"uid://dx7wsm4546jhi": &"PrinterData",
-&"uid://kygd8fbwdq7b": &"FaxData",
-&"uid://ybi0asm1irle": &"ProectorData"
+&"uid://2t55wlaugl3a": &"05_KulerData",
+&"uid://b0ncjxms0xii": &"04_NozhniciData",
+&"uid://b8b4ru6tn74nx": &"01_BumagaData",
+&"uid://cq80gotaho843": &"08_ShrederData",
+&"uid://de1qek20oahkw": &"10_BossData",
+&"uid://deesd1pd6okku": &"03_ShkafData",
+&"uid://dtc5mh6io1pcw": &"09_VigorRabData",
+&"uid://dx7wsm4546jhi": &"02_PrinterData",
+&"uid://kygd8fbwdq7b": &"07_FaxData",
+&"uid://ybi0asm1irle": &"06_ProectorData"
 })
 _string_ids_to_uids = Dictionary[StringName, StringName]({
-&"BossData": &"uid://de1qek20oahkw",
-&"BumagaData": &"uid://b8b4ru6tn74nx",
-&"FaxData": &"uid://kygd8fbwdq7b",
-&"KulerData": &"uid://2t55wlaugl3a",
-&"NozhniciData": &"uid://b0ncjxms0xii",
-&"PrinterData": &"uid://dx7wsm4546jhi",
-&"ProectorData": &"uid://ybi0asm1irle",
-&"ShkafData": &"uid://deesd1pd6okku",
-&"ShrederData": &"uid://cq80gotaho843",
-&"VigorRabData": &"uid://dtc5mh6io1pcw"
+&"01_BumagaData": &"uid://b8b4ru6tn74nx",
+&"02_PrinterData": &"uid://dx7wsm4546jhi",
+&"03_ShkafData": &"uid://deesd1pd6okku",
+&"04_NozhniciData": &"uid://b0ncjxms0xii",
+&"05_KulerData": &"uid://2t55wlaugl3a",
+&"06_ProectorData": &"uid://ybi0asm1irle",
+&"07_FaxData": &"uid://kygd8fbwdq7b",
+&"08_ShrederData": &"uid://cq80gotaho843",
+&"09_VigorRabData": &"uid://dtc5mh6io1pcw",
+&"10_BossData": &"uid://de1qek20oahkw"
 })

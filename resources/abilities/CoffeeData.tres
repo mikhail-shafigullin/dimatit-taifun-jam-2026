@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityData" format=3]
+
+[ext_resource type="Script" path="res://src/abstracts/AbilityData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+abilityName = "Coffee"
+description = "Gives one ally a stacking attack speed buff. When it wears off, the target suffers a temporary caffeine crash."
+type = 10
+cooldown = 5.0
+value = 0.15
+radius = 200.0
+duration = 6.0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityData" format=3]
+
+[ext_resource type="Script" path="res://src/abstracts/AbilityData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+abilityName = "Damage Reduction"
+description = "Periodically halves the damage dealt by nearby enemies for a short time."
+type = 1
+cooldown = 8.0
+value = 0.5
+radius = 180.0
+duration = 4.0

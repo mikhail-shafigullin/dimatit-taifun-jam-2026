@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b4fs80y3mke78" path="res://src/abstracts/AbilityData.gd" id="1_ut6o0"]
 [ext_resource type="Texture2D" uid="uid://p0kti8rro68p" path="res://assets/props/Dude_MangPoProd.png" id="2_idle"]
 [ext_resource type="Texture2D" uid="uid://jxl5k18hgbt5" path="res://assets/props/Dude_MangPoProd_Hit.png" id="3_hit"]
+[ext_resource type="Resource" path="res://resources/abilities/CloseTheDealData.tres" id="4_execute"]
 
 [resource]
 script = ExtResource("1_script")
@@ -15,5 +16,6 @@ damage = 1
 attackSpeed = 1.0
 moveSpeed = 100.0
 attackRadius = 50.0
+abilities = [ExtResource("4_execute")]
 idleSprite = ExtResource("2_idle")
 hitSprite = ExtResource("3_hit")

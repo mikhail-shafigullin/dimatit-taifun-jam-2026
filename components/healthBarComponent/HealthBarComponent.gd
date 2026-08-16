@@ -7,7 +7,8 @@ const BACKGROUND_COLOR = Color(0.1, 0.1, 0.1, 0.8)
 const FILL_COLOR = Color(0.2, 0.9, 0.2, 1.0)
 
 const DAMAGE_LABEL_COLOR = Color(1.0, 0.25, 0.2, 1.0)
-const DAMAGE_LABEL_FONT_SIZE = 20
+const HEAL_LABEL_COLOR = Color(0.3, 1.0, 0.4, 1.0)
+const FLOAT_LABEL_FONT_SIZE = 20
 const DAMAGE_FLOAT_HEIGHT_MIN = 40.0
 const DAMAGE_FLOAT_HEIGHT_MAX = 75.0
 const DAMAGE_FLOAT_DRIFT = 30.0
@@ -25,6 +26,7 @@ func _ready() -> void:
 	if _combatComponent != null:
 		_combatComponent.hp_changed.connect(_onHpChanged)
 		_combatComponent.damage_taken.connect(_onDamageTaken)
+		_combatComponent.healed.connect(_onHealed)
 		_onHpChanged(_combatComponent.getCurrentHp(), _combatComponent.getMaxHp())
 
 func _onHpChanged(currentHp: int, maxHp: int) -> void:
@@ -32,10 +34,16 @@ func _onHpChanged(currentHp: int, maxHp: int) -> void:
 	queue_redraw()
 
 func _onDamageTaken(amount: int) -> void:
+	_spawnFloatingLabel("-%d" % amount, DAMAGE_LABEL_COLOR)
+
+func _onHealed(amount: int) -> void:
+	_spawnFloatingLabel("+%d" % amount, HEAL_LABEL_COLOR)
+
+func _spawnFloatingLabel(text: String, color: Color) -> void:
 	var label := Label.new()
-	label.text = "-%d" % amount
-	label.add_theme_color_override("font_color", DAMAGE_LABEL_COLOR)
-	label.add_theme_font_size_override("font_size", DAMAGE_LABEL_FONT_SIZE)
+	label.text = text
+	label.add_theme_color_override("font_color", color)
+	label.add_theme_font_size_override("font_size", FLOAT_LABEL_FONT_SIZE)
 	label.z_index = 100
 	get_tree().current_scene.add_child(label)
 	label.global_position = get_parent().global_position + Vector2(randf_range(-10.0, 10.0), verticalOffset)

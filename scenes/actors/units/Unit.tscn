@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://cllp4w7e5jsel" path="res://components/combatComponent/CombatComponent.gd" id="3_combat"]
 [ext_resource type="Script" uid="uid://6f03vpu381p8" path="res://components/healthBarComponent/HealthBarComponent.gd" id="4_healthbar"]
 [ext_resource type="Script" uid="uid://cafldrqlkuj1e" path="res://components/walkAnimationComponent/WalkAnimationComponent.gd" id="5_walkanim"]
+[ext_resource type="Script" path="res://components/abilityComponent/AbilityComponent.gd" id="6_ability"]
+[ext_resource type="Script" path="res://components/buffDebuffComponent/BuffDebuffComponent.gd" id="7_buffdebuff"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0d74v"]
 radius = 15.0
@@ -56,3 +58,12 @@ verticalOffset = -95.0
 [node name="WalkAnimationComponent" type="Node" parent="." unique_id=773203140]
 unique_name_in_owner = true
 script = ExtResource("5_walkanim")
+
+[node name="AbilityComponent" type="Node" parent="." unique_id=558102934]
+unique_name_in_owner = true
+script = ExtResource("6_ability")
+
+[node name="BuffDebuffComponent" type="Node2D" parent="." unique_id=558102935]
+unique_name_in_owner = true
+script = ExtResource("7_buffdebuff")
+verticalOffset = -108.0

@@ -6,10 +6,13 @@ const KNOCKBACK_DURATION = 0.15
 const KNOCKBACK_FRICTION = 900.0
 const SEPARATION_STRENGTH = 10.0
 const COMBATANTS_GROUP = "combatants"
+const CAFFEINE_CRASH_NAME = "Caffeine Crash"
+const CAFFEINE_CRASH_DURATION = 3.0
 
 signal died()
 signal hp_changed(currentHp: int, maxHp: int)
 signal damage_taken(amount: int)
+signal healed(amount: int)
 
 @export var ownGroup: String = ""
 @export var targetGroup: String = ""
@@ -27,6 +30,25 @@ var _attackCooldown: float = 0.0
 var _target: CombatComponent = null
 var _knockbackVelocity: Vector2 = Vector2.ZERO
 var _knockbackTimer: float = 0.0
+var _forcedTarget: CombatComponent = null
+var _forcedTargetTimer: float = 0.0
+var _outgoingDamageMultiplier: float = 1.0
+var _outgoingDamageMultiplierTimer: float = 0.0
+var _stunTimer: float = 0.0
+var _damageBonus: int = 0
+var _attackSpeedBonus: float = 0.0
+var _dotDamagePerTick: int = 0
+var _dotTickInterval: float = 1.0
+var _dotTickTimer: float = 0.0
+var _dotTimer: float = 0.0
+var _executeChance: float = 0.0
+var _executeHpThreshold: float = 0.0
+var _coffeeStacks: int = 0
+var _coffeeAttackSpeedBonus: float = 0.0
+var _coffeeTimer: float = 0.0
+var _crashPenalty: float = 0.0
+var _crashTimer: float = 0.0
+var _statusEffects: Dictionary = {}
 
 func _ready() -> void:
 	if not ownGroup.is_empty():
@@ -65,12 +87,44 @@ func _physics_process(delta: float) -> void:
 
 	_attackCooldown = max(_attackCooldown - delta, 0.0)
 
+	if _forcedTargetTimer > 0.0:
+		_forcedTargetTimer -= delta
+		if _forcedTargetTimer <= 0.0:
+			_forcedTarget = null
+	if _outgoingDamageMultiplierTimer > 0.0:
+		_outgoingDamageMultiplierTimer -= delta
+		if _outgoingDamageMultiplierTimer <= 0.0:
+			_outgoingDamageMultiplier = 1.0
+	if _dotTimer > 0.0:
+		_dotTickTimer -= delta
+		if _dotTickTimer <= 0.0:
+			_dotTickTimer += _dotTickInterval
+			applyDamage(_dotDamagePerTick, _body.global_position)
+		_dotTimer = max(_dotTimer - delta, 0.0)
+	if _coffeeTimer > 0.0:
+		_coffeeTimer -= delta
+		if _coffeeTimer <= 0.0:
+			_triggerCaffeineCrash()
+	if _crashTimer > 0.0:
+		_crashTimer -= delta
+		if _crashTimer <= 0.0:
+			_crashPenalty = 0.0
+
+	for effectName in _statusEffects.keys():
+		if _statusEffects[effectName]["permanent"]:
+			continue
+		_statusEffects[effectName]["remaining"] -= delta
+		if _statusEffects[effectName]["remaining"] <= 0.0:
+			_statusEffects.erase(effectName)
+
 	var moveVelocity := Vector2.ZERO
 
 	if _knockbackTimer > 0.0:
 		_knockbackTimer -= delta
 		_knockbackVelocity = _knockbackVelocity.move_toward(Vector2.ZERO, KNOCKBACK_FRICTION * delta)
 		moveVelocity = _knockbackVelocity
+	elif _stunTimer > 0.0:
+		_stunTimer -= delta
 	else:
 		_target = _findNearestTarget()
 		if _target != null:
@@ -106,6 +160,10 @@ func _computeSeparation() -> Vector2:
 	return push
 
 func _findNearestTarget() -> CombatComponent:
+	if _forcedTarget != null:
+		if is_instance_valid(_forcedTarget) and is_instance_valid(_forcedTarget._body):
+			return _forcedTarget
+		_forcedTarget = null
 	if targetGroup.is_empty():
 		return null
 	var nearest: CombatComponent = null
@@ -123,10 +181,113 @@ func _findNearestTarget() -> CombatComponent:
 func _tryAttack() -> void:
 	if _target == null or _attackCooldown > 0.0:
 		return
-	_attackCooldown = 1.0 / max(_attackSpeed, 0.01)
+	_attackCooldown = 1.0 / max(_attackSpeed + _attackSpeedBonus + _coffeeAttackSpeedBonus - _crashPenalty, 0.01)
 	if _body != null and _body.has_method("playHitFlash"):
 		_body.playHitFlash()
-	_target.applyDamage(_damage, _body.global_position)
+	if _executeChance > 0.0 and _target.getCurrentHp() <= _target.getMaxHp() * _executeHpThreshold and randf() < _executeChance:
+		_target.execute(_body.global_position)
+		return
+	var finalDamage := int(round((_damage + _damageBonus) * _outgoingDamageMultiplier))
+	_target.applyDamage(finalDamage, _body.global_position)
+
+func setExecuteChance(chance: float, hpThreshold: float) -> void:
+	_executeChance = chance
+	_executeHpThreshold = hpThreshold
+
+func execute(sourcePosition: Vector2) -> void:
+	applyDamage(_currentHp, sourcePosition)
+
+func cleanseDebuffs() -> void:
+	_forcedTarget = null
+	_forcedTargetTimer = 0.0
+	_stunTimer = 0.0
+	_dotTimer = 0.0
+	_dotTickTimer = 0.0
+	_dotDamagePerTick = 0
+	if _outgoingDamageMultiplier < 1.0:
+		_outgoingDamageMultiplier = 1.0
+		_outgoingDamageMultiplierTimer = 0.0
+	_crashPenalty = 0.0
+	_crashTimer = 0.0
+	for effectName in _statusEffects.keys():
+		if not _statusEffects[effectName]["isBuff"]:
+			_statusEffects.erase(effectName)
+
+func heal(amount: int) -> void:
+	var previousHp := _currentHp
+	_currentHp = min(_currentHp + amount, _maxHp)
+	var actualHeal := _currentHp - previousHp
+	if actualHeal <= 0:
+		return
+	hp_changed.emit(_currentHp, _maxHp)
+	healed.emit(actualHeal)
+
+func getGlobalPosition() -> Vector2:
+	return _body.global_position if _body != null else Vector2.ZERO
+
+func forceTarget(source: CombatComponent, duration: float, effectName: String) -> void:
+	_forcedTarget = source
+	_forcedTargetTimer = duration
+	_setStatusEffect(effectName, duration, false)
+
+func applyOutgoingDamageMultiplier(multiplier: float, duration: float, effectName: String, isBuff: bool) -> void:
+	_outgoingDamageMultiplier = multiplier
+	_outgoingDamageMultiplierTimer = duration
+	_setStatusEffect(effectName, duration, isBuff)
+
+func applyStun(duration: float, effectName: String) -> void:
+	_stunTimer = max(_stunTimer, duration)
+	_setStatusEffect(effectName, duration, false)
+
+func applyDot(damagePerTick: int, tickInterval: float, duration: float, effectName: String) -> void:
+	_dotDamagePerTick = damagePerTick
+	_dotTickInterval = max(tickInterval, 0.01)
+	_dotTickTimer = _dotTickInterval
+	_dotTimer = duration
+	_setStatusEffect(effectName, duration, false)
+
+func applyCoffee(bonusPerStack: float, duration: float, effectName: String) -> void:
+	_coffeeStacks += 1
+	_coffeeAttackSpeedBonus += bonusPerStack
+	_coffeeTimer = duration
+	_statusEffects[effectName] = { "remaining": duration, "isBuff": true, "permanent": false, "stacks": _coffeeStacks }
+
+func _triggerCaffeineCrash() -> void:
+	_crashPenalty = _coffeeAttackSpeedBonus
+	_crashTimer = CAFFEINE_CRASH_DURATION
+	_coffeeStacks = 0
+	_coffeeAttackSpeedBonus = 0.0
+	_setStatusEffect(CAFFEINE_CRASH_NAME, _crashTimer, false)
+
+func addStatGrowth(effectName: String, damagePerStack: int, attackSpeedPerStack: float = 0.0) -> void:
+	if not _statusEffects.has(effectName):
+		_statusEffects[effectName] = { "remaining": 0.0, "isBuff": true, "permanent": true, "stacks": 0 }
+	_statusEffects[effectName]["stacks"] += 1
+	_damageBonus += damagePerStack
+	_attackSpeedBonus += attackSpeedPerStack
+
+func resetStatGrowth(effectName: String) -> void:
+	if not _statusEffects.has(effectName):
+		return
+	_statusEffects.erase(effectName)
+	_damageBonus = 0
+	_attackSpeedBonus = 0.0
+
+func _setStatusEffect(effectName: String, duration: float, isBuff: bool) -> void:
+	_statusEffects[effectName] = { "remaining": duration, "isBuff": isBuff, "permanent": false, "stacks": 0 }
+
+func getActiveStatusEffects() -> Array[Dictionary]:
+	var effects: Array[Dictionary] = []
+	for effectName in _statusEffects.keys():
+		var effect: Dictionary = _statusEffects[effectName]
+		effects.append({
+			"name": effectName,
+			"remaining": effect["remaining"],
+			"isBuff": effect["isBuff"],
+			"permanent": effect["permanent"],
+			"stacks": effect["stacks"],
+		})
+	return effects
 
 func applyDamage(amount: int, sourcePosition: Vector2) -> void:
 	_currentHp -= amount

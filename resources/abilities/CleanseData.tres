@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbilityData" format=3]
+
+[ext_resource type="Script" path="res://src/abstracts/AbilityData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+abilityName = "Cleanse"
+description = "Periodically removes debuffs from nearby allies."
+type = 9
+cooldown = 6.0
+radius = 180.0
