@@ -2,15 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://c7poseq2034ms" path="res://assets/props/Fon.png" id="1_76kk2"]
 [ext_resource type="PackedScene" uid="uid://djb7oiaieslb2" path="res://levels/BaseCamera.tscn" id="1_ba0rk"]
-[ext_resource type="PackedScene" uid="uid://dthqonbmq0we2" path="res://scenes/actors/units/Unit.tscn" id="3_6vw0r"]
-[ext_resource type="Resource" uid="uid://bbuf21jknhxjs" path="res://resources/units/OfficeClerkData.tres" id="4_hwdry"]
-[ext_resource type="PackedScene" uid="uid://bf0uur36674q7" path="res://scenes/actors/enemies/Enemy.tscn" id="5_hwdry"]
-[ext_resource type="Resource" uid="uid://b8b4ru6tn74nx" path="res://resources/enemies/BumagaData.tres" id="6_bumaga"]
-[ext_resource type="Resource" uid="uid://bsobkmf768m1w" path="res://resources/units/ITData.tres" id="7_sm6bf"]
-[ext_resource type="Resource" uid="uid://bf5ehnu21ban5" path="res://resources/units/OhranikData.tres" id="8_jvu5a"]
+[ext_resource type="Script" uid="uid://xi5utfg3bnkx" path="res://levels/GameScene.gd" id="9_gsscript"]
+[ext_resource type="PackedScene" uid="uid://bxufdmhibvuxk" path="res://levels/ui/ChooseUnitUI.tscn" id="10_choose"]
 
 [node name="GameScene" type="Node2D" unique_id=183180630]
 y_sort_enabled = true
+script = ExtResource("9_gsscript")
 
 [node name="BaseCamera" parent="." unique_id=1412570783 instance=ExtResource("1_ba0rk")]
 position = Vector2(576, 324)
@@ -20,22 +17,7 @@ z_index = -2
 position = Vector2(570, 286)
 texture = ExtResource("1_76kk2")
 
-[node name="Enemy" parent="." unique_id=891972945 instance=ExtResource("5_hwdry")]
-position = Vector2(270, 168)
-enemyData = ExtResource("6_bumaga")
+[node name="UI" type="CanvasLayer" parent="." unique_id=1003043447]
+process_mode = 3
 
-[node name="Enemy2" parent="." unique_id=1659703077 instance=ExtResource("5_hwdry")]
-position = Vector2(254, 422)
-enemyData = ExtResource("6_bumaga")
-
-[node name="Unit" parent="." unique_id=218488657 instance=ExtResource("3_6vw0r")]
-position = Vector2(596, 312)
-unitData = ExtResource("4_hwdry")
-
-[node name="Unit2" parent="." unique_id=773203139 instance=ExtResource("3_6vw0r")]
-position = Vector2(701, 505)
-unitData = ExtResource("7_sm6bf")
-
-[node name="Unit3" parent="." unique_id=1036750867 instance=ExtResource("3_6vw0r")]
-position = Vector2(770, 160)
-unitData = ExtResource("8_jvu5a")
+[node name="ChooseUnitUI" parent="UI" unique_id=1698237501 instance=ExtResource("10_choose")]

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dvhosjlmax1ob" path="res://autoload/sceneTransitionManager/SceneTransitionManager.gd" id="1_script"]
 
 [node name="SceneTransitionManager" type="CanvasLayer" unique_id=1721937371]
+process_mode = 3
 layer = 128
 script = ExtResource("1_script")
 

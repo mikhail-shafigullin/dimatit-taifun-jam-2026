@@ -1,5 +1,8 @@
 extends Control
 
+@export var hoverScale: float = 1.08
+@export var hoverScaleDuration: float = 0.15
+
 @onready var portraitRect: TextureRect = %PortraitRect
 @onready var nameLabel: Label = %NameLabel
 @onready var roleLabel: Label = %RoleLabel
@@ -10,12 +13,31 @@ extends Control
 @onready var selectButton: Button = %SelectButton
 
 var unitData: UnitData
+var _scaleTween: Tween
 
 func _ready() -> void:
 	selectButton.pressed.connect(_onSelectButtonPressed)
+	resized.connect(_onResized)
+	mouse_entered.connect(_onMouseEntered)
+	mouse_exited.connect(_onMouseExited)
 
 func _onSelectButtonPressed() -> void:
 	EventBus.unit_selected.emit(unitData)
+
+func _onResized() -> void:
+	pivot_offset = size / 2.0
+
+func _onMouseEntered() -> void:
+	_tweenScale(Vector2.ONE * hoverScale)
+
+func _onMouseExited() -> void:
+	_tweenScale(Vector2.ONE)
+
+func _tweenScale(targetScale: Vector2) -> void:
+	if _scaleTween != null:
+		_scaleTween.kill()
+	_scaleTween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_scaleTween.tween_property(self, "scale", targetScale, hoverScaleDuration)
 
 func setUnitData(data: UnitData) -> void:
 	unitData = data

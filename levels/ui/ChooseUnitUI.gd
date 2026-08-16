@@ -6,6 +6,8 @@ extends Control
 @onready var ignoreButton: Button = %IgnoreButton
 
 func _ready() -> void:
+	visible = false
+	add_to_group("chooseUnitUi")
 	ignoreButton.pressed.connect(_onIgnoreButtonPressed)
 
 func _onIgnoreButtonPressed() -> void:
