@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dxxkkqwi3nglg"]
 
+[ext_resource type="Theme" uid="uid://jq1mtiwp7dbk" path="res://resources/styles/cardTheme.tres" id="1_7nnmd"]
 [ext_resource type="Script" uid="uid://b54uxsgi2jr64" path="res://levels/ui/UnitCard.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
@@ -36,6 +37,7 @@ offset_bottom = -0.16802979
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("1_7nnmd")
 script = ExtResource("1_script")
 
 [node name="CardPanel" type="PanelContainer" parent="." unique_id=-1521584856]

@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="ModifierData" format=3]
+[gd_resource type="Resource" script_class="ModifierData" format=3 uid="uid://b1wot2gxgr0x8"]
 
-[ext_resource type="Script" path="res://src/abstracts/ModifierData.gd" id="1_script"]
-[ext_resource type="Resource" path="res://resources/units/ToxicData.tres" id="2_target"]
+[ext_resource type="Script" uid="uid://byhbjjc70xlhv" path="res://src/abstracts/ModifierData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://bahpdvnq6cpjw" path="res://resources/units/ToxicData.tres" id="2_target"]
 
 [resource]
 script = ExtResource("1_script")
 modifierName = "Thick Skin"
-description = "Permanently increases Toxic Coworker's maximum HP by 20%."
+description = "Permanently increases Toxic Coworker's maximum HP by 100%."
 scope = 1
 targetUnitType = ExtResource("2_target")
-value = 0.2
+value = 1.0

@@ -29,11 +29,11 @@ func _process(_delta: float) -> void:
 func _buildLabel(effect: Dictionary) -> Label:
 	var label := Label.new()
 	if effect["permanent"]:
-		label.text = "%s +%d" % [effect["name"], effect["stacks"]]
+		label.text = "%s +%d" % [tr(effect["name"]), effect["stacks"]]
 	elif effect["stacks"] > 1:
-		label.text = "%s x%d %.1fs" % [effect["name"], effect["stacks"], effect["remaining"]]
+		label.text = "%s x%d %.1fs" % [tr(effect["name"]), effect["stacks"], effect["remaining"]]
 	else:
-		label.text = "%s %.1fs" % [effect["name"], effect["remaining"]]
+		label.text = "%s %.1fs" % [tr(effect["name"]), effect["remaining"]]
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.add_theme_font_size_override("font_size", FONT_SIZE)

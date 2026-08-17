@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwcn2y8ph6e31"]
 
 [ext_resource type="Script" uid="uid://b4ypj5b7riweu" path="res://levels/ui/MainUI.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://jq1mtiwp7dbk" path="res://resources/styles/cardTheme.tres" id="1_volj3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
 content_margin_left = 10.0
@@ -26,6 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_volj3")
 script = ExtResource("1_script")
 
 [node name="ModifierList" type="VBoxContainer" parent="." unique_id=605456387]

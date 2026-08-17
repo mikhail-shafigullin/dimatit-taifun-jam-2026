@@ -100,6 +100,7 @@ func _presentNextChoice() -> void:
 func _onUnitSelected(data: UnitData) -> void:
 	if not _selectionActive:
 		return
+	Analytics.sendUnitDataAdd(data);
 	_spawnUnit(data)
 	_consumeChoice()
 
@@ -148,6 +149,7 @@ func _onModifierSelected(data: ModifierData) -> void:
 	if not _modifierSelectionActive:
 		return
 	addedModifiers.append(data)
+	Analytics.sendModifierDataAdd(data);
 	_activateModifier(data)
 	_consumeModifierChoice()
 
@@ -251,5 +253,6 @@ func _spawnRoundEnemies() -> void:
 		)
 		currentScene.add_child(enemy)
 	currentRound = min(currentRound + 1, R.ROUND_ENEMIES.size() - 1)
+	Analytics.sendProgressionEvent(currentRound)
 	_battleActive = true
 	_tickModifierRounds()

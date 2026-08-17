@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://jq1mtiwp7dbk"]
+
+[ext_resource type="FontFile" uid="uid://qtb66lhfd2pi" path="res://assets/fonts/Vollkorn-Medium.ttf" id="1_7473i"]
+
+[resource]
+Label/fonts/font = ExtResource("1_7473i")

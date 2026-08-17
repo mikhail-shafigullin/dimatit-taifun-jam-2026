@@ -20,7 +20,7 @@ func incrementCount() -> void:
 	_updateLabel()
 
 func _updateLabel() -> void:
-	text = modifierData.modifierName if _count <= 1 else "%s x%d" % [modifierData.modifierName, _count]
+	text = modifierData.modifierName if _count <= 1 else "%s x%d" % [tr(modifierData.modifierName), _count]
 
 func _onMouseEntered() -> void:
 	hovered.emit(self, modifierData.description)

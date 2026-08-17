@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="ModifierData" format=3]
+[gd_resource type="Resource" script_class="ModifierData" format=3 uid="uid://cv24pcp1d8f3f"]
 
-[ext_resource type="Script" path="res://src/abstracts/ModifierData.gd" id="1_script"]
-[ext_resource type="Resource" path="res://resources/units/ManegerData.tres" id="2_target"]
+[ext_resource type="Script" uid="uid://byhbjjc70xlhv" path="res://src/abstracts/ModifierData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://bklq67il8qijr" path="res://resources/units/ManegerData.tres" id="2_target"]
 
 [resource]
 script = ExtResource("1_script")
 modifierName = "Power Suit"
-description = "Permanently increases Manager's damage by 20%."
+description = "Permanently increases Manager's damage by 100%."
 scope = 1
 targetUnitType = ExtResource("2_target")
 statType = 1
-value = 0.2
+value = 1.0

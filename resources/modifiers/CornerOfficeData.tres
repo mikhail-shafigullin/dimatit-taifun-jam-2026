@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="ModifierData" format=3]
+[gd_resource type="Resource" script_class="ModifierData" format=3 uid="uid://w6linfh2daay"]
 
-[ext_resource type="Script" path="res://src/abstracts/ModifierData.gd" id="1_script"]
-[ext_resource type="Resource" path="res://resources/units/ManegerData.tres" id="2_target"]
+[ext_resource type="Script" uid="uid://byhbjjc70xlhv" path="res://src/abstracts/ModifierData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://bklq67il8qijr" path="res://resources/units/ManegerData.tres" id="2_target"]
 
 [resource]
 script = ExtResource("1_script")
 modifierName = "Corner Office"
-description = "Permanently increases Manager's maximum HP by 20%."
+description = "Permanently increases Manager's maximum HP by 100%."
 scope = 1
 targetUnitType = ExtResource("2_target")
-value = 0.2
+value = 1.0

@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+LocalizationController="*res://autoload/localizationController/LocalizationController.gd"
 SceneTransitionManager="*res://autoload/sceneTransitionManager/SceneTransitionManager.tscn"
 SaveSystem="*res://autoload/saveSystem/SaveSystem.gd"
 PauseMenu="*res://autoload/pauseMenu/PauseMenu.tscn"

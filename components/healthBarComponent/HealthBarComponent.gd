@@ -34,10 +34,10 @@ func _onHpChanged(currentHp: int, maxHp: int) -> void:
 	queue_redraw()
 
 func _onDamageTaken(amount: int) -> void:
-	_spawnFloatingLabel("-%d" % amount, DAMAGE_LABEL_COLOR)
+	_spawnFloatingLabel(tr("-%d") % amount, DAMAGE_LABEL_COLOR)
 
 func _onHealed(amount: int) -> void:
-	_spawnFloatingLabel("+%d" % amount, HEAL_LABEL_COLOR)
+	_spawnFloatingLabel(tr("+%d") % amount, HEAL_LABEL_COLOR)
 
 func _spawnFloatingLabel(text: String, color: Color) -> void:
 	var label := Label.new()

@@ -19,4 +19,16 @@ func sendProgressionEvent(number: int):
 	var optArgs = {
 		"eventNumber": number
 	}
-	gameAnalytics.addProgressionEvent("start", "act" + str(number), "", "", optArgs)
+	gameAnalytics.addProgressionEvent("start", "level" + str(number), "", "", optArgs)
+
+func sendUnitDataAdd(unitData: UnitData):
+	var optArgs = {
+		"unitData": unitData.unitName
+	}
+	gameAnalytics.addDesignEvent("add:unit", optArgs)
+
+func sendModifierDataAdd(modifierData: ModifierData):
+	var optArgs = {
+		"modifierData": modifierData.modifierName
+	}
+	gameAnalytics.addDesignEvent("add:modifier", optArgs)

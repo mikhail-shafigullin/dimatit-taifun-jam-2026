@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://djb7oiaieslb2" path="res://levels/BaseCamera.tscn" id="1_ba0rk"]
 [ext_resource type="Script" uid="uid://xi5utfg3bnkx" path="res://levels/GameScene.gd" id="9_gsscript"]
 [ext_resource type="PackedScene" uid="uid://bxufdmhibvuxk" path="res://levels/ui/ChooseUnitUI.tscn" id="10_choose"]
-[ext_resource type="PackedScene" path="res://levels/ui/ChooseModifierUI.tscn" id="11_choose_modifier"]
+[ext_resource type="PackedScene" uid="uid://ci5ya4lfa0wmn" path="res://levels/ui/ChooseModifierUI.tscn" id="11_choose_modifier"]
 [ext_resource type="PackedScene" uid="uid://dwcn2y8ph6e31" path="res://levels/ui/MainUI.tscn" id="12_main_ui"]
 
 [sub_resource type="Gradient" id="Gradient_6vw0r"]
@@ -61,6 +61,6 @@ process_mode = 3
 
 [node name="ChooseUnitUI" parent="UI" unique_id=1698237501 instance=ExtResource("10_choose")]
 
-[node name="ChooseModifierUI" parent="UI" instance=ExtResource("11_choose_modifier")]
+[node name="ChooseModifierUI" parent="UI" unique_id=1021023515 instance=ExtResource("11_choose_modifier")]
 
-[node name="MainUI" parent="UI" instance=ExtResource("12_main_ui")]
+[node name="MainUI" parent="UI" unique_id=869598745 instance=ExtResource("12_main_ui")]

@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://d0oxseadrx273"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_vij6i"]
+
+[resource]
+script = ExtResource("1_vij6i")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([]),
+&"class_restrictions": Array[StringName]([&"\"res://src/abstracts/ModifierData.gd\""]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://resources/modifiers"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://b1wot2gxgr0x8": &"ThickSkinData",
+&"uid://b61t7djpbrced": &"CompanyCarData",
+&"uid://bciw3ih8kptab": &"IronConstitutionData",
+&"uid://bkimf5q8nbuo4": &"IndustrialCleanerData",
+&"uid://blgs4s275wtbl": &"DoubleEspressoData",
+&"uid://c0lkybb7fulcd": &"ThermalMugData",
+&"uid://c546y8mlxo4hw": &"SalesMotivationData",
+&"uid://c7lak64ulisi2": &"BatonUpgradeData",
+&"uid://calshddh75pjv": &"OverachieverData",
+&"uid://cg2owdn12b36m": &"OverclockedRigData",
+&"uid://chbfi15w125bn": &"PerformanceReviewData",
+&"uid://cprb0u67t3o1h": &"NervesOfSteelData",
+&"uid://cv24pcp1d8f3f": &"PowerSuitData",
+&"uid://cvy1emnr46y74": &"ToxicAtmosphereData",
+&"uid://d3iyyxsaun321": &"ErgonomicChairData",
+&"uid://dkf3skwcnt5re": &"EnergyDrinkData",
+&"uid://dln13b3npse8w": &"SharpenedPencilData",
+&"uid://dn662t0x5s310": &"BackupServerData",
+&"uid://dp4stbvo8steu": &"RedStaplerData",
+&"uid://dr8augddjr7vs": &"ExtraShiftData",
+&"uid://dvtof3huok4nr": &"WellnessProgramData",
+&"uid://lxvp2tpgkel2": &"SteelToeBootsData",
+&"uid://oi8bjm52magf": &"StressBallData",
+&"uid://w6linfh2daay": &"CornerOfficeData"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"BackupServerData": &"uid://dn662t0x5s310",
+&"BatonUpgradeData": &"uid://c7lak64ulisi2",
+&"CompanyCarData": &"uid://b61t7djpbrced",
+&"CornerOfficeData": &"uid://w6linfh2daay",
+&"DoubleEspressoData": &"uid://blgs4s275wtbl",
+&"EnergyDrinkData": &"uid://dkf3skwcnt5re",
+&"ErgonomicChairData": &"uid://d3iyyxsaun321",
+&"ExtraShiftData": &"uid://dr8augddjr7vs",
+&"IndustrialCleanerData": &"uid://bkimf5q8nbuo4",
+&"IronConstitutionData": &"uid://bciw3ih8kptab",
+&"NervesOfSteelData": &"uid://cprb0u67t3o1h",
+&"OverachieverData": &"uid://calshddh75pjv",
+&"OverclockedRigData": &"uid://cg2owdn12b36m",
+&"PerformanceReviewData": &"uid://chbfi15w125bn",
+&"PowerSuitData": &"uid://cv24pcp1d8f3f",
+&"RedStaplerData": &"uid://dp4stbvo8steu",
+&"SalesMotivationData": &"uid://c546y8mlxo4hw",
+&"SharpenedPencilData": &"uid://dln13b3npse8w",
+&"SteelToeBootsData": &"uid://lxvp2tpgkel2",
+&"StressBallData": &"uid://oi8bjm52magf",
+&"ThermalMugData": &"uid://c0lkybb7fulcd",
+&"ThickSkinData": &"uid://b1wot2gxgr0x8",
+&"ToxicAtmosphereData": &"uid://cvy1emnr46y74",
+&"WellnessProgramData": &"uid://dvtof3huok4nr"
+})

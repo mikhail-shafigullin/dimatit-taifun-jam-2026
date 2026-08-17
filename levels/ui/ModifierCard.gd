@@ -42,6 +42,11 @@ func setModifierData(data: ModifierData) -> void:
 	modifierData = data
 	nameLabel.text = data.modifierName
 	scopeLabel.text = "All Units" if data.scope == ModifierData.ScopeType.GLOBAL else data.targetUnitType.unitName
-	durationLabel.text = "Permanent" if data.durationType == ModifierData.DurationType.PERMANENT else "%d rounds" % data.durationRounds
+	durationLabel.text = "Permanent" if data.durationType == ModifierData.DurationType.PERMANENT else _formatDuration(data.durationRounds)
 	descriptionLabel.text = data.description
 	iconRect.texture = data.icon
+
+func _formatDuration(rounds: int) -> String:
+	if TranslationServer.get_locale().begins_with("ru"):
+		return "%d %s" % [rounds, Translations.pluralizeRu(rounds, "раунд", "раунда", "раундов")]
+	return tr("%d rounds") % rounds

@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="ModifierData" format=3]
+[gd_resource type="Resource" script_class="ModifierData" format=3 uid="uid://cvy1emnr46y74"]
 
-[ext_resource type="Script" path="res://src/abstracts/ModifierData.gd" id="1_script"]
-[ext_resource type="Resource" path="res://resources/units/ToxicData.tres" id="2_target"]
+[ext_resource type="Script" uid="uid://byhbjjc70xlhv" path="res://src/abstracts/ModifierData.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://bahpdvnq6cpjw" path="res://resources/units/ToxicData.tres" id="2_target"]
 
 [resource]
 script = ExtResource("1_script")
 modifierName = "Toxic Atmosphere"
-description = "Permanently increases Toxic Coworker's damage by 20%."
+description = "Permanently increases Toxic Coworker's damage by 100%."
 scope = 1
 targetUnitType = ExtResource("2_target")
 statType = 1
-value = 0.2
+value = 1.0

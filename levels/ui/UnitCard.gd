@@ -45,13 +45,13 @@ func setUnitData(data: UnitData) -> void:
 	nameLabel.text = data.unitName
 	roleLabel.text = data.role
 	attackTypeLabel.text = "Melee" if data.attackType == UnitData.AttackType.MELEE else "Ranged"
-	hpLabel.text = "HP: %d" % data.maxHp
-	damageLabel.text = "Damage: %d" % data.damage
+	hpLabel.text = tr("HP: %d") % data.maxHp
+	damageLabel.text = tr("Damage: %d") % data.damage
 	if data.abilities.is_empty():
 		abilityLabel.text = "No special ability"
 	else:
 		var abilityTexts: Array[String] = []
 		for ability in data.abilities:
-			abilityTexts.append("%s: %s" % [ability.abilityName, ability.description])
+			abilityTexts.append("%s: %s" % [tr(ability.abilityName), tr(ability.description)])
 		abilityLabel.text = "\n".join(abilityTexts)
 	portraitRect.texture = data.idleSprite
