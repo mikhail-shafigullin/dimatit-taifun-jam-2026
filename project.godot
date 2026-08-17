@@ -23,6 +23,7 @@ PauseMenu="*res://autoload/pauseMenu/PauseMenu.tscn"
 Analytics="*uid://crwb20qlw6enl"
 R="*uid://cd01mwnjjkes4"
 EventBus="*res://autoload/eventBus/EventBus.gd"
+MusicManager="*res://autoload/musicManager/MusicManager.tscn"
 Global="*uid://b70qjkgrd6h25"
 
 [editor_plugins]

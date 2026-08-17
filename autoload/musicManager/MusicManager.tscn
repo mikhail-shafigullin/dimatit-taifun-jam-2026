@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://autoload/musicManager/MusicManager.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://dvvy57qh7iftd" path="res://assets/music/Sketchbook 2025-12-11_INTRO.ogg" id="2_intro"]
+[ext_resource type="AudioStream" uid="uid://x0m7d63tu0sv" path="res://assets/music/Sketchbook 2025-12-11_VERSE.ogg" id="3_verse"]
+
+[node name="MusicManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_script")
+
+[node name="IntroPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_intro")
+volume_db = 0.0
+bus = "Master"
+
+[node name="VersePlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_verse")
+volume_db = -60.0
+bus = "Master"
