@@ -4,15 +4,22 @@ const CHOICES_PER_ROUND = 3
 const BATTLES_PER_MODIFIER = 2
 const UNIT_SPAWN_AREA = Rect2(150.0, 100.0, 400.0, 400.0)
 const ENEMY_SPAWN_AREA = Rect2(150.0, 100.0, 400.0, 400.0)
+const END_SCREEN_PATH = "res://levels/winScreen/WinScreen.tscn"
+
+enum GameOutcome { WIN, LOSE }
 
 var unitChoicesAvailable: int = 3
 var currentRound: int = 0
 var addedModifiers: Array[ModifierData] = []
+var lastGameOutcome: GameOutcome = GameOutcome.WIN
+
+var _activeModifierEntries: Array[Dictionary] = []
 
 var _selectionActive: bool = false
 var _modifierSelectionActive: bool = false
 var _battleActive: bool = false
 var _battlesSinceModifier: int = 0
+var _currentRoundIndex: int = 0
 
 func _ready() -> void:
 	EventBus.unit_selected.connect(_onUnitSelected)
@@ -25,16 +32,23 @@ func _process(_delta: float) -> void:
 		return
 	var enemiesAlive := not get_tree().get_nodes_in_group("enemies").is_empty()
 	if not enemiesAlive:
-		_onRoundEnded()
+		_onRoundEnded(true)
 		return
 	var unitsAlive := not get_tree().get_nodes_in_group("units").is_empty()
 	if not unitsAlive:
-		_onRoundEnded()
+		_onRoundEnded(false)
 
 ## Called on victory (all enemies dead) or defeat (all units dead) to open the next round's
 ## rewards. A modifier pick is offered first, once every BATTLES_PER_MODIFIER battles.
-func _onRoundEnded() -> void:
+## If the round just cleared was the last entry in ROUND_ENEMIES, the game is won instead.
+func _onRoundEnded(enemiesDefeated: bool) -> void:
 	_battleActive = false
+	if not enemiesDefeated:
+		_onGameLost()
+		return
+	if _currentRoundIndex >= R.ROUND_ENEMIES.size() - 1:
+		_onGameWon()
+		return
 	_healSurvivingUnits()
 	_battlesSinceModifier += 1
 	if _battlesSinceModifier >= BATTLES_PER_MODIFIER:
@@ -42,6 +56,18 @@ func _onRoundEnded() -> void:
 		showChooseModifierInterface()
 	else:
 		_proceedToUnitChoice()
+
+## Fires when the last round in ROUND_ENEMIES has been cleared, ending the run in victory.
+func _onGameWon() -> void:
+	lastGameOutcome = GameOutcome.WIN
+	EventBus.game_won.emit()
+	SceneTransitionManager.transitionToScene(END_SCREEN_PATH)
+
+## Fires when every player unit has died, ending the run in defeat.
+func _onGameLost() -> void:
+	lastGameOutcome = GameOutcome.LOSE
+	EventBus.game_lost.emit()
+	SceneTransitionManager.transitionToScene(END_SCREEN_PATH)
 
 func _proceedToUnitChoice() -> void:
 	addUnitChoice()
@@ -122,7 +148,51 @@ func _onModifierSelected(data: ModifierData) -> void:
 	if not _modifierSelectionActive:
 		return
 	addedModifiers.append(data)
+	_activateModifier(data)
 	_consumeModifierChoice()
+
+## Activates a picked modifier for the rest of the run (or for durationRounds if TEMPORARY)
+## and immediately applies it to every currently alive matching unit.
+func _activateModifier(modifier: ModifierData) -> void:
+	var roundsRemaining := modifier.durationRounds if modifier.durationType == ModifierData.DurationType.TEMPORARY else -1
+	_activeModifierEntries.append({ "modifier": modifier, "roundsRemaining": roundsRemaining })
+	for combatComponent in get_tree().get_nodes_in_group("units"):
+		if _modifierAppliesToUnit(modifier, combatComponent):
+			combatComponent.applyModifier(modifier)
+
+func _modifierAppliesToUnit(modifier: ModifierData, combatComponent: CombatComponent) -> bool:
+	if modifier.scope == ModifierData.ScopeType.GLOBAL:
+		return true
+	var unit := combatComponent.getBody() as Unit
+	return unit != null and unit.unitData == modifier.targetUnitType
+
+## Gives a freshly spawned unit every currently active modifier that applies to it, so
+## units recruited after a modifier pick are not missing out on it.
+func _applyActiveModifiersToUnit(unit: Unit) -> void:
+	for entry in _activeModifierEntries:
+		var modifier: ModifierData = entry["modifier"]
+		if _modifierAppliesToUnit(modifier, unit.combatComponent):
+			unit.combatComponent.applyModifier(modifier)
+
+## Counts down TEMPORARY modifiers by one round and strips expired ones from every unit
+## they were applied to.
+func _tickModifierRounds() -> void:
+	var stillActive: Array[Dictionary] = []
+	for entry in _activeModifierEntries:
+		if entry["roundsRemaining"] < 0:
+			stillActive.append(entry)
+			continue
+		entry["roundsRemaining"] -= 1
+		if entry["roundsRemaining"] <= 0:
+			_deactivateModifier(entry["modifier"])
+		else:
+			stillActive.append(entry)
+	_activeModifierEntries = stillActive
+
+func _deactivateModifier(modifier: ModifierData) -> void:
+	for combatComponent in get_tree().get_nodes_in_group("units"):
+		if _modifierAppliesToUnit(modifier, combatComponent):
+			combatComponent.removeModifier(modifier)
 
 func _onModifierChoiceIgnored() -> void:
 	if not _modifierSelectionActive:
@@ -148,6 +218,7 @@ func _spawnUnit(data: UnitData) -> void:
 		randf_range(UNIT_SPAWN_AREA.position.y, UNIT_SPAWN_AREA.end.y)
 	)
 	currentScene.add_child(unit)
+	_applyActiveModifiersToUnit(unit)
 
 func _healSurvivingUnits() -> void:
 	for combatComponent in get_tree().get_nodes_in_group("units"):
@@ -170,6 +241,7 @@ func _spawnRoundEnemies() -> void:
 	if currentScene == null:
 		return
 	var roundIndex := clampi(currentRound, 0, R.ROUND_ENEMIES.size() - 1)
+	_currentRoundIndex = roundIndex
 	for enemyData in R.ROUND_ENEMIES[roundIndex]:
 		var enemy := R.ENEMY_SCENE.instantiate() as Enemy
 		enemy.enemyData = enemyData
@@ -180,3 +252,4 @@ func _spawnRoundEnemies() -> void:
 		currentScene.add_child(enemy)
 	currentRound = min(currentRound + 1, R.ROUND_ENEMIES.size() - 1)
 	_battleActive = true
+	_tickModifierRounds()

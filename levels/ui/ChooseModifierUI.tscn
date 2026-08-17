@@ -1,9 +1,9 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ci5ya4lfa0wmn"]
 
-[ext_resource type="Script" path="res://levels/ui/ChooseModifierUI.gd" id="1_script"]
-[ext_resource type="PackedScene" path="res://levels/ui/ModifierCard.tscn" id="2_card"]
+[ext_resource type="Script" uid="uid://dy2hhb4r1r8n3" path="res://levels/ui/ChooseModifierUI.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://hkn70ubwe21d" path="res://levels/ui/ModifierCard.tscn" id="2_card"]
 
-[node name="ChooseModifierUi" type="Control"]
+[node name="ChooseModifierUi" type="Control" unique_id=1405313156]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="CenterContainer" type="Control" parent="."]
+[node name="CenterContainer" type="Control" parent="." unique_id=857649239]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ChooseBox" type="VBoxContainer" parent="CenterContainer"]
+[node name="ChooseBox" type="VBoxContainer" parent="CenterContainer" unique_id=1214332493]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,25 +35,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="CardsRow" type="HBoxContainer" parent="CenterContainer/ChooseBox"]
+[node name="CardsRow" type="HBoxContainer" parent="CenterContainer/ChooseBox" unique_id=386964359]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Card1" parent="CenterContainer/ChooseBox/CardsRow" instance=ExtResource("2_card")]
+[node name="Card1" parent="CenterContainer/ChooseBox/CardsRow" unique_id=1136891206 instance=ExtResource("2_card")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Card2" parent="CenterContainer/ChooseBox/CardsRow" instance=ExtResource("2_card")]
+[node name="Card2" parent="CenterContainer/ChooseBox/CardsRow" unique_id=479946221 instance=ExtResource("2_card")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Card3" parent="CenterContainer/ChooseBox/CardsRow" instance=ExtResource("2_card")]
+[node name="Card3" parent="CenterContainer/ChooseBox/CardsRow" unique_id=1084847909 instance=ExtResource("2_card")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="IgnoreButton" type="Button" parent="CenterContainer/ChooseBox"]
+[node name="IgnoreButton" type="Button" parent="CenterContainer/ChooseBox" unique_id=2114445095]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Ignore"

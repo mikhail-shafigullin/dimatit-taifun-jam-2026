@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b0xxld0u44anq"]
+
+[ext_resource type="Theme" uid="uid://c60wswfraljwf" path="res://resources/styles/menuTheme.tres" id="1_nku56"]
+[ext_resource type="Script" uid="uid://bp3red1wjgl2t" path="res://levels/winScreen/WinScreen.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bae0x1n28csy0" path="res://assets/props/Glavnoe_Menu.png" id="3_yt8ia"]
+
+[node name="WinScreen" type="Control" unique_id=282976201]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nku56")
+script = ExtResource("1_script")
+
+[node name="GlavnoeMenu" type="Sprite2D" parent="." unique_id=168539020]
+position = Vector2(576, 326)
+scale = Vector2(0.6037037, 0.6037037)
+texture = ExtResource("3_yt8ia")
+
+[node name="CenterContainer" type="Control" parent="." unique_id=316160110]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2051400342]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 0
+offset_left = 31.0
+offset_top = 22.0
+offset_right = 374.0
+offset_bottom = 154.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="WinLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=242118184]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "You win!
+Thank you for playing!"
+horizontal_alignment = 1
+
+[node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=63285739]
+unique_name_in_owner = true
+layout_mode = 2
+text = "To the main menu"

@@ -50,6 +50,11 @@ var _coffeeTimer: float = 0.0
 var _crashPenalty: float = 0.0
 var _crashTimer: float = 0.0
 var _statusEffects: Dictionary = {}
+var _baseMaxHp: int = 0
+var _baseDamage: int = 0
+var _baseAttackSpeed: float = 0.0
+var _baseMoveSpeed: float = 0.0
+var _activeModifiers: Array[ModifierData] = []
 
 func _ready() -> void:
 	if not ownGroup.is_empty():
@@ -68,12 +73,13 @@ func _resolveCollisionRadius() -> float:
 	return 16.0
 
 func configure(maxHp: int, damage: int, attackSpeed: float, moveSpeed: float, attackRadius: float) -> void:
-	_maxHp = maxHp
-	_currentHp = maxHp
-	_damage = damage
-	_attackSpeed = attackSpeed
-	_moveSpeed = moveSpeed
+	_baseMaxHp = maxHp
+	_baseDamage = damage
+	_baseAttackSpeed = attackSpeed
+	_baseMoveSpeed = moveSpeed
 	_attackRadius = attackRadius
+	_recomputeModifiedStats()
+	_currentHp = _maxHp
 	hp_changed.emit(_currentHp, _maxHp)
 
 func getCurrentHp() -> int:
@@ -81,6 +87,50 @@ func getCurrentHp() -> int:
 
 func getMaxHp() -> int:
 	return _maxHp
+
+func getBody() -> CharacterBody2D:
+	return _body
+
+## Recomputes effective stats from base stats and every active ModifierData, so stacked
+## percentage bonuses always derive from the same baseline instead of compounding on reapply.
+func _recomputeModifiedStats() -> void:
+	var hpMultiplier := 1.0
+	var damageMultiplier := 1.0
+	var attackSpeedMultiplier := 1.0
+	var moveSpeedMultiplier := 1.0
+	for modifier in _activeModifiers:
+		match modifier.statType:
+			ModifierData.StatType.MAX_HP:
+				hpMultiplier += modifier.value
+			ModifierData.StatType.DAMAGE:
+				damageMultiplier += modifier.value
+			ModifierData.StatType.ATTACK_SPEED:
+				attackSpeedMultiplier += modifier.value
+			ModifierData.StatType.MOVE_SPEED:
+				moveSpeedMultiplier += modifier.value
+	var missingHp := _maxHp - _currentHp
+	_maxHp = int(round(_baseMaxHp * hpMultiplier))
+	_currentHp = clampi(_maxHp - missingHp, 0, _maxHp)
+	_damage = int(round(_baseDamage * damageMultiplier))
+	_attackSpeed = _baseAttackSpeed * attackSpeedMultiplier
+	_moveSpeed = _baseMoveSpeed * moveSpeedMultiplier
+	hp_changed.emit(_currentHp, _maxHp)
+
+func applyModifier(modifier: ModifierData) -> void:
+	_activeModifiers.append(modifier)
+	_recomputeModifiedStats()
+	if not _statusEffects.has(modifier.modifierName):
+		_statusEffects[modifier.modifierName] = { "remaining": 0.0, "isBuff": true, "permanent": true, "stacks": 0 }
+	_statusEffects[modifier.modifierName]["stacks"] += 1
+
+func removeModifier(modifier: ModifierData) -> void:
+	_activeModifiers.erase(modifier)
+	_recomputeModifiedStats()
+	if not _statusEffects.has(modifier.modifierName):
+		return
+	_statusEffects[modifier.modifierName]["stacks"] -= 1
+	if _statusEffects[modifier.modifierName]["stacks"] <= 0:
+		_statusEffects.erase(modifier.modifierName)
 
 func _physics_process(delta: float) -> void:
 	if _body == null:
