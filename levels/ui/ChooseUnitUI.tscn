@@ -54,6 +54,7 @@ layout_mode = 2
 
 [node name="IgnoreButton" type="Button" parent="CenterContainer/ChooseBox" unique_id=1668287586]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Ignore"

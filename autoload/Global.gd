@@ -35,6 +35,7 @@ func _process(_delta: float) -> void:
 ## rewards. A modifier pick is offered first, once every BATTLES_PER_MODIFIER battles.
 func _onRoundEnded() -> void:
 	_battleActive = false
+	_healSurvivingUnits()
 	_battlesSinceModifier += 1
 	if _battlesSinceModifier >= BATTLES_PER_MODIFIER:
 		_battlesSinceModifier = 0
@@ -147,6 +148,12 @@ func _spawnUnit(data: UnitData) -> void:
 		randf_range(UNIT_SPAWN_AREA.position.y, UNIT_SPAWN_AREA.end.y)
 	)
 	currentScene.add_child(unit)
+
+func _healSurvivingUnits() -> void:
+	for combatComponent in get_tree().get_nodes_in_group("units"):
+		var component := combatComponent as CombatComponent
+		if component != null:
+			component.heal(component.getMaxHp())
 
 func _repositionSurvivingUnits() -> void:
 	for combatComponent in get_tree().get_nodes_in_group("units"):

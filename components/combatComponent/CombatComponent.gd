@@ -1,7 +1,8 @@
 class_name CombatComponent
 extends Node
 
-const KNOCKBACK_SPEED = 220.0
+const KNOCKBACK_SPEED_DEFAULT = 220.0
+const KNOCKBACK_SPEED_FROM_ENEMY = 480.0
 const KNOCKBACK_DURATION = 0.15
 const KNOCKBACK_FRICTION = 900.0
 const SEPARATION_STRENGTH = 10.0
@@ -185,17 +186,17 @@ func _tryAttack() -> void:
 	if _body != null and _body.has_method("playHitFlash"):
 		_body.playHitFlash()
 	if _executeChance > 0.0 and _target.getCurrentHp() <= _target.getMaxHp() * _executeHpThreshold and randf() < _executeChance:
-		_target.execute(_body.global_position)
+		_target.execute(_body.global_position, ownGroup)
 		return
 	var finalDamage := int(round((_damage + _damageBonus) * _outgoingDamageMultiplier))
-	_target.applyDamage(finalDamage, _body.global_position)
+	_target.applyDamage(finalDamage, _body.global_position, ownGroup)
 
 func setExecuteChance(chance: float, hpThreshold: float) -> void:
 	_executeChance = chance
 	_executeHpThreshold = hpThreshold
 
-func execute(sourcePosition: Vector2) -> void:
-	applyDamage(_currentHp, sourcePosition)
+func execute(sourcePosition: Vector2, sourceGroup: String = "") -> void:
+	applyDamage(_currentHp, sourcePosition, sourceGroup)
 
 func cleanseDebuffs() -> void:
 	_forcedTarget = null
@@ -289,16 +290,20 @@ func getActiveStatusEffects() -> Array[Dictionary]:
 		})
 	return effects
 
-func applyDamage(amount: int, sourcePosition: Vector2) -> void:
+## Allied hits never knock the target back (so units don't shove enemies around),
+## while enemy hits knock allied units back further than before for more readable impact.
+func applyDamage(amount: int, sourcePosition: Vector2, sourceGroup: String = "") -> void:
 	_currentHp -= amount
 	hp_changed.emit(max(_currentHp, 0), _maxHp)
 	damage_taken.emit(amount)
 	if _body != null and _body.has_method("playDamageFlash"):
 		_body.playDamageFlash()
-	var knockDirection := _body.global_position - sourcePosition
-	knockDirection = knockDirection.normalized() if knockDirection != Vector2.ZERO else Vector2.RIGHT
-	_knockbackVelocity = knockDirection * KNOCKBACK_SPEED
-	_knockbackTimer = KNOCKBACK_DURATION
+	if sourceGroup != "units":
+		var knockDirection := _body.global_position - sourcePosition
+		knockDirection = knockDirection.normalized() if knockDirection != Vector2.ZERO else Vector2.RIGHT
+		var knockbackSpeed := KNOCKBACK_SPEED_FROM_ENEMY if sourceGroup == "enemies" else KNOCKBACK_SPEED_DEFAULT
+		_knockbackVelocity = knockDirection * knockbackSpeed
+		_knockbackTimer = KNOCKBACK_DURATION
 	if _currentHp <= 0:
 		died.emit()
 		_body.queue_free()
