@@ -1,5 +1,23 @@
 [gd_scene format=3 uid="uid://dwcn2y8ph6e31"]
 
+[ext_resource type="Script" uid="uid://b4ypj5b7riweu" path="res://levels/ui/MainUI.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.14, 0.14, 0.17, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.35, 0.42, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="MainUi" type="Control" unique_id=1705451507]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +25,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="ModifierList" type="VBoxContainer" parent="." unique_id=605456387]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 16.0
+offset_right = -16.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="DescriptionPopup" type="PanelContainer" parent="." unique_id=719826404]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(240, 0)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 1
+offset_right = 240.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_popup")
+
+[node name="DescriptionLabel" type="Label" parent="DescriptionPopup" unique_id=193277161]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Modifier description"
+autowrap_mode = 3

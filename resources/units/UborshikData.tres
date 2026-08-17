@@ -10,11 +10,11 @@
 script = ExtResource("1_script")
 unitName = "Janitor"
 role = "Support Cleanser"
-maxHp = 100
-damage = 1
-attackSpeed = 1.0
-moveSpeed = 100.0
-attackRadius = 50.0
-abilities = [ExtResource("4_cleanse")]
+maxHp = 130
+damage = 9
+attackSpeed = 0.9
+moveSpeed = 95.0
+attackRadius = 45.0
+abilities = Array[ExtResource("1_6eh1f")]([ExtResource("4_cleanse")])
 idleSprite = ExtResource("2_idle")
 hitSprite = ExtResource("3_hit")

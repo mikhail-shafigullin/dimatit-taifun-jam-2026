@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="AbilityData" format=3]
+[gd_resource type="Resource" script_class="AbilityData" format=3 uid="uid://b6dvrijm8lfmd"]
 
-[ext_resource type="Script" path="res://src/abstracts/AbilityData.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b4fs80y3mke78" path="res://src/abstracts/AbilityData.gd" id="1_script"]
 
 [resource]
 script = ExtResource("1_script")
@@ -8,5 +8,5 @@ abilityName = "Heal"
 description = "Periodically restores HP to nearby allies."
 type = 2
 cooldown = 5.0
-value = 20.0
+value = 16.0
 radius = 150.0

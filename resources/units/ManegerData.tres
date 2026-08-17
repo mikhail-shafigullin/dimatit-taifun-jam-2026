@@ -9,11 +9,10 @@
 script = ExtResource("1_script")
 unitName = "Manager"
 role = "Buffer"
-attackType = 1
-maxHp = 100
-damage = 1
-attackSpeed = 1.0
-moveSpeed = 100.0
-attackRadius = 50.0
-abilities = [ExtResource("3_buff")]
+maxHp = 90
+damage = 5
+attackSpeed = 0.8
+moveSpeed = 110.0
+attackRadius = 45.0
+abilities = Array[ExtResource("1_kks01")]([ExtResource("3_buff")])
 idleSprite = ExtResource("2_idle")

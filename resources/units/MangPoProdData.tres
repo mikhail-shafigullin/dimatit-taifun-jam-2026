@@ -10,12 +10,11 @@
 script = ExtResource("1_script")
 unitName = "Sales Rep"
 role = "Executor"
-attackType = 1
 maxHp = 100
-damage = 1
+damage = 12
 attackSpeed = 1.0
 moveSpeed = 100.0
-attackRadius = 50.0
-abilities = [ExtResource("4_execute")]
+attackRadius = 45.0
+abilities = Array[ExtResource("1_ut6o0")]([ExtResource("4_execute")])
 idleSprite = ExtResource("2_idle")
 hitSprite = ExtResource("3_hit")

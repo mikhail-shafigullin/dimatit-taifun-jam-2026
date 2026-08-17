@@ -35,8 +35,9 @@ func _onMouseExited() -> void:
 
 func _tweenScale(targetScale: Vector2) -> void:
 	if _scaleTween != null:
-		_scaleTween.kill()
+		_scaleTween.kill()	
 	_scaleTween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_scaleTween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	_scaleTween.tween_property(self, "scale", targetScale, hoverScaleDuration)
 
 func setUnitData(data: UnitData) -> void:
@@ -53,4 +54,4 @@ func setUnitData(data: UnitData) -> void:
 		for ability in data.abilities:
 			abilityTexts.append("%s: %s" % [ability.abilityName, ability.description])
 		abilityLabel.text = "\n".join(abilityTexts)
-	portraitRect.texture = data.portrait
+	portraitRect.texture = data.idleSprite

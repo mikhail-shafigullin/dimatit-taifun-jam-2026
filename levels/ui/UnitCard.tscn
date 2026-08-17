@@ -26,6 +26,7 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="UnitCard" type="Control" unique_id=633352485]
+process_mode = 3
 custom_minimum_size = Vector2(221, 318)
 layout_mode = 3
 anchor_right = 0.192
@@ -34,6 +35,7 @@ offset_right = -0.18400574
 offset_bottom = -0.16802979
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_script")
 
 [node name="CardPanel" type="PanelContainer" parent="." unique_id=-1521584856]
@@ -50,15 +52,18 @@ offset_right = -0.057998657
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
 [node name="ContentBox" type="VBoxContainer" parent="CardPanel" unique_id=1578656766]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 6
 
 [node name="PortraitPanel" type="PanelContainer" parent="CardPanel/ContentBox" unique_id=1476908300]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_portrait")
 
 [node name="PortraitRect" type="TextureRect" parent="CardPanel/ContentBox/PortraitPanel" unique_id=-51964976]
@@ -76,6 +81,7 @@ horizontal_alignment = 1
 
 [node name="RoleLabel" type="Label" parent="CardPanel/ContentBox" unique_id=-2025179503]
 unique_name_in_owner = true
+visible = false
 modulate = Color(0.8, 0.8, 0.8, 1)
 layout_mode = 2
 text = "Role"
@@ -88,27 +94,32 @@ alignment = 1
 
 [node name="AttackTypeLabel" type="Label" parent="CardPanel/ContentBox/StatsRow" unique_id=1790120597]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Meele"
 
 [node name="HpLabel" type="Label" parent="CardPanel/ContentBox/StatsRow" unique_id=1991334196]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "HP: 0"
 
 [node name="DamageLabel" type="Label" parent="CardPanel/ContentBox/StatsRow" unique_id=-1365933087]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Damage: 0"
 
 [node name="AbilityLabel" type="Label" parent="CardPanel/ContentBox" unique_id=1996081625]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "Ability description"
 autowrap_mode = 3
 
 [node name="SelectButton" type="Button" parent="CardPanel" unique_id=330906536]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 flat = true

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cllp4w7e5jsel" path="res://components/combatComponent/CombatComponent.gd" id="3_combat"]
 [ext_resource type="Script" uid="uid://6f03vpu381p8" path="res://components/healthBarComponent/HealthBarComponent.gd" id="4_healthbar"]
 [ext_resource type="Script" uid="uid://cafldrqlkuj1e" path="res://components/walkAnimationComponent/WalkAnimationComponent.gd" id="5_walkanim"]
-[ext_resource type="Script" path="res://components/buffDebuffComponent/BuffDebuffComponent.gd" id="6_buffdebuff"]
+[ext_resource type="Script" uid="uid://bqv0ymqf4y58b" path="res://components/buffDebuffComponent/BuffDebuffComponent.gd" id="6_buffdebuff"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_enemy"]
 radius = 60.0

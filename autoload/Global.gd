@@ -1,18 +1,24 @@
 extends Node
 
 const CHOICES_PER_ROUND = 3
+const BATTLES_PER_MODIFIER = 2
 const UNIT_SPAWN_AREA = Rect2(150.0, 100.0, 400.0, 400.0)
 const ENEMY_SPAWN_AREA = Rect2(150.0, 100.0, 400.0, 400.0)
 
 var unitChoicesAvailable: int = 3
 var currentRound: int = 0
+var addedModifiers: Array[ModifierData] = []
 
 var _selectionActive: bool = false
+var _modifierSelectionActive: bool = false
 var _battleActive: bool = false
+var _battlesSinceModifier: int = 0
 
 func _ready() -> void:
 	EventBus.unit_selected.connect(_onUnitSelected)
 	EventBus.unit_choice_ignored.connect(_onUnitChoiceIgnored)
+	EventBus.modifier_selected.connect(_onModifierSelected)
+	EventBus.modifier_choice_ignored.connect(_onModifierChoiceIgnored)
 
 func _process(_delta: float) -> void:
 	if not _battleActive:
@@ -25,9 +31,18 @@ func _process(_delta: float) -> void:
 	if not unitsAlive:
 		_onRoundEnded()
 
-## Called on victory (all enemies dead) or defeat (all units dead) to open the next unit pick.
+## Called on victory (all enemies dead) or defeat (all units dead) to open the next round's
+## rewards. A modifier pick is offered first, once every BATTLES_PER_MODIFIER battles.
 func _onRoundEnded() -> void:
 	_battleActive = false
+	_battlesSinceModifier += 1
+	if _battlesSinceModifier >= BATTLES_PER_MODIFIER:
+		_battlesSinceModifier = 0
+		showChooseModifierInterface()
+	else:
+		_proceedToUnitChoice()
+
+func _proceedToUnitChoice() -> void:
 	addUnitChoice()
 	showAddUnitInterface()
 
@@ -79,6 +94,47 @@ func _consumeChoice() -> void:
 		_repositionSurvivingUnits()
 		_spawnRoundEnemies()
 		EventBus.battle_phase_started.emit()
+
+## Shows a single global-modifier pick. Offered once every BATTLES_PER_MODIFIER battles,
+## before the unit pick.
+func showChooseModifierInterface() -> void:
+	if _modifierSelectionActive:
+		return
+	_modifierSelectionActive = true
+	get_tree().paused = true
+	EventBus.modifier_choice_phase_started.emit()
+	_presentModifierChoice()
+
+func _presentModifierChoice() -> void:
+	var chooseModifierUi := get_tree().get_first_node_in_group("chooseModifierUi") as Control
+	if chooseModifierUi == null:
+		return
+	var shuffledPool := R.MODIFIER_POOL.duplicate()
+	shuffledPool.shuffle()
+	var roundChoices: Array[ModifierData] = []
+	for offset in CHOICES_PER_ROUND:
+		roundChoices.append(shuffledPool[offset])
+	chooseModifierUi.setChoices(roundChoices)
+	chooseModifierUi.show()
+
+func _onModifierSelected(data: ModifierData) -> void:
+	if not _modifierSelectionActive:
+		return
+	addedModifiers.append(data)
+	_consumeModifierChoice()
+
+func _onModifierChoiceIgnored() -> void:
+	if not _modifierSelectionActive:
+		return
+	_consumeModifierChoice()
+
+func _consumeModifierChoice() -> void:
+	_modifierSelectionActive = false
+	get_tree().paused = false
+	var chooseModifierUi := get_tree().get_first_node_in_group("chooseModifierUi") as Control
+	if chooseModifierUi != null:
+		chooseModifierUi.hide()
+	_proceedToUnitChoice()
 
 func _spawnUnit(data: UnitData) -> void:
 	var currentScene := get_tree().current_scene

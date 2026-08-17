@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ModifierData" format=3]
+
+[ext_resource type="Script" path="res://src/abstracts/ModifierData.gd" id="1_script"]
+[ext_resource type="Resource" path="res://resources/units/UborshikData.tres" id="2_target"]
+
+[resource]
+script = ExtResource("1_script")
+modifierName = "Steel-Toe Boots"
+description = "Permanently increases Janitor's maximum HP by 20%."
+scope = 1
+targetUnitType = ExtResource("2_target")
+value = 0.2

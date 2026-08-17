@@ -10,12 +10,11 @@
 script = ExtResource("1_script")
 unitName = "Office Barista"
 role = "Support Stimulator"
-attackType = 1
 maxHp = 100
-damage = 1
+damage = 6
 attackSpeed = 1.0
 moveSpeed = 100.0
-attackRadius = 50.0
-abilities = [ExtResource("4_coffee")]
+attackRadius = 45.0
+abilities = Array[ExtResource("1_tw8i2")]([ExtResource("4_coffee")])
 idleSprite = ExtResource("2_idle")
 hitSprite = ExtResource("3_hit")
