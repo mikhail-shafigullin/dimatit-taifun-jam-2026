@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dmbnrnk1edcbx"]
 
 [ext_resource type="Script" uid="uid://ba7t4hoyv21ee" path="res://autoload/pauseMenu/PauseMenu.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://c60wswfraljwf" path="res://resources/styles/menuTheme.tres" id="2_4wsjp"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=607405163]
 process_mode = 3
@@ -22,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_4wsjp")
 
 [node name="MainPanel" type="VBoxContainer" parent="CenterContainer" unique_id=1080908228]
 unique_name_in_owner = true
