@@ -9,8 +9,8 @@
 script = ExtResource("1_script")
 unitName = "Manager"
 role = "Buffer"
-maxHp = 90
-damage = 5
+maxHp = 110
+damage = 6
 attackSpeed = 0.8
 moveSpeed = 110.0
 attackRadius = 45.0

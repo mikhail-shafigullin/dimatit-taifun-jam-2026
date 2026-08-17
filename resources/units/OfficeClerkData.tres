@@ -9,8 +9,8 @@
 script = ExtResource("1_script")
 unitName = "Office Clerk"
 role = "Base Fighter"
-maxHp = 100
-damage = 12
+maxHp = 120
+damage = 16
 attackSpeed = 1.0
 moveSpeed = 100.0
 attackRadius = 50.0

@@ -10,8 +10,8 @@
 script = ExtResource("1_script")
 unitName = "HR Manager"
 role = "Support Healer"
-maxHp = 100
-damage = 6
+maxHp = 120
+damage = 7
 attackSpeed = 0.9
 moveSpeed = 100.0
 attackRadius = 45.0

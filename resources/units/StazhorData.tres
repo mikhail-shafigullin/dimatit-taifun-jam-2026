@@ -10,8 +10,8 @@
 script = ExtResource("1_script")
 unitName = "Intern"
 role = "Scaler"
-maxHp = 80
-damage = 6
+maxHp = 90
+damage = 7
 attackSpeed = 1.0
 moveSpeed = 105.0
 attackRadius = 45.0

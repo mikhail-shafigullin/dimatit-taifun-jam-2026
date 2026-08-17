@@ -10,8 +10,8 @@
 script = ExtResource("1_script")
 unitName = "SysAdmin"
 role = "Control"
-maxHp = 100
-damage = 8
+maxHp = 120
+damage = 10
 attackSpeed = 0.9
 moveSpeed = 100.0
 attackRadius = 45.0

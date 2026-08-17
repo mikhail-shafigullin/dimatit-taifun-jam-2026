@@ -2,8 +2,8 @@ extends Node
 
 const CHOICES_PER_ROUND = 3
 const BATTLES_PER_MODIFIER = 2
-const UNIT_SPAWN_AREA = Rect2(150.0, 100.0, 400.0, 400.0)
-const ENEMY_SPAWN_AREA = Rect2(150.0, 100.0, 400.0, 400.0)
+const UNIT_SPAWN_AREA = Rect2(150.0, 100.0, 600.0, 400.0)
+const ENEMY_SPAWN_AREA = Rect2(150.0, 100.0, 600.0, 400.0)
 const END_SCREEN_PATH = "res://levels/winScreen/WinScreen.tscn"
 
 enum GameOutcome { WIN, LOSE }

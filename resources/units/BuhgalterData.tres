@@ -4,14 +4,14 @@
 [ext_resource type="Script" uid="uid://cq5m0fnii63w3" path="res://src/abstracts/UnitData.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dl0dxy6f7gatx" path="res://assets/props/Dude_Buhgalter.png" id="2_idle"]
 [ext_resource type="Texture2D" uid="uid://cpve6l7e50omi" path="res://assets/props/Dude_Buhgalter_Hit.png" id="3_hit"]
-[ext_resource type="Resource" path="res://resources/abilities/DamageReductionData.tres" id="4_reduction"]
+[ext_resource type="Resource" uid="uid://cecfpk7f4jjda" path="res://resources/abilities/DamageReductionData.tres" id="4_reduction"]
 
 [resource]
 script = ExtResource("1_script")
 unitName = "Accountant"
 role = "Tank / Debuffer"
-maxHp = 160
-damage = 8
+maxHp = 180
+damage = 10
 attackSpeed = 0.9
 moveSpeed = 95.0
 attackRadius = 45.0

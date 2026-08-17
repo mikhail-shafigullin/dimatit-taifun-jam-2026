@@ -10,8 +10,8 @@
 script = ExtResource("1_script")
 unitName = "Security Guard"
 role = "Tank"
-maxHp = 220
-damage = 8
+maxHp = 300
+damage = 10
 attackSpeed = 0.8
 moveSpeed = 90.0
 attackRadius = 45.0

@@ -10,8 +10,8 @@
 script = ExtResource("1_script")
 unitName = "Toxic Coworker"
 role = "DOT Debuffer"
-maxHp = 100
-damage = 7
+maxHp = 120
+damage = 8
 attackSpeed = 1.0
 moveSpeed = 100.0
 attackRadius = 45.0
